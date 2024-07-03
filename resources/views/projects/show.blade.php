@@ -7,7 +7,7 @@
 @section('content')
 <style>
     .custom-map {
-        width: 500px;
+        width: 540px;
         max-width: 1080px;
         /* or any specific width you want, like 600px */
         height: 400px;
@@ -54,8 +54,13 @@
                     </div>
                     <div class="row gx-4 gx-lg-5">
                         <div class="col-lg-5 justify-content-center">
-                            <img class="img-fluid pb-3" style="object-fit: cover;height:35rem!important;width: 100%;"
-                                src="{{env('APP_URL')}}{{$project->image}}" alt="..." />
+                            <div class="gallery-item">
+                                <a href="{{env('APP_URL')}}{{$project->image}}" data-lightbox="gallery">
+                                    <img class="img-fluid pb-3"
+                                        style="object-fit: cover;height:35rem!important;width: 100%;"
+                                        src="{{env('APP_URL')}}{{$project->image}}" alt="..." />
+                                </a>
+                            </div>
                         </div>
                         <div class="col-lg-7 py-5 py-md-0">
                             <p class="mb-4" style="text-align: justify">{{$project->description}}</p>
@@ -71,7 +76,7 @@
             <div class="row">
                 <div class="multiple-items">
                     @foreach($projectImages as $p)
-                    <div class="col-sm-4 py-4 gallery-item">
+                    <div class="col-sm-4 py-4 px-2 gallery-item">
                         <a href="{{env('APP_URL')}}{{$p->image}}" data-lightbox="gallery">
                             <img src="{{env('APP_URL')}}{{$p->image}}"
                                 style="height:20rem!important;width:100%;object-fit:cover" />
@@ -112,8 +117,12 @@
                 </div>
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-6 justify-content-center">
-                        <img class="img-fluid" style="object-fit: cover;height:100%!important"
-                            src="{{env('APP_URL')}}{{$project->siteplan}}" alt="..." />
+                        <div class="gallery-item">
+                            <a href="{{env('APP_URL')}}{{$project->siteplan}}" data-lightbox="gallery">
+                                <img class="img-fluid" style="object-fit: cover;height:100%!important"
+                                    src="{{env('APP_URL')}}{{$project->siteplan}}" alt="..." />
+                            </a>
+                        </div>
                     </div>
                     <div class="col-lg-6 justify-content-center">
                         {!! str_replace('<iframe', '<iframe class="custom-map"' , $project->location) !!}

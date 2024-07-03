@@ -23,14 +23,14 @@
 </style>
 
 
-<div style="height: 50%; min-height: 40%; background-image: url('assets/img/contact.jpg'); background-size: cover;">
+<div style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$contact_information->header}}'); background-size: cover;">
 </div>
 <div style="background-color:#eeeeef">
     <div class="pt-3">
         <div class="container">
             <div class="row py-3 px-4">
                 <div class="col-sm-12">
-                    <h2 class="fw-bold text-left py-4">Contact Us</h2>
+                    <h2 class="fw-bold text-left py-4">{{$contact_information->title}}</h2>
                     <hr class="divider divider-black" style="margin: 1rem 0;" />
                 </div>
             </div>

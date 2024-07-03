@@ -30,7 +30,7 @@ Route::post('/upload-image-360', function (Request $request) {
         $timestamp = $request->input('timestamp');
 
         if ($image = $request->file('image_360')) {
-            $destinationPath = 'images/projectType/image_360/';
+            $destinationPath = 'images/projectTypeImage360/image_360/';
             $profileImage = "image_360" . "-" . $timestamp . "." . $image->getClientOriginalExtension();
             $image->move(public_path($destinationPath), $profileImage);
 
@@ -66,4 +66,3 @@ Route::delete('/delete-image-360', function (Request $request) {
         return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
     }
 });
-

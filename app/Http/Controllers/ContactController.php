@@ -8,14 +8,16 @@ use App\Models\Information;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactMail;
 use App\Mail\TestEmail;
+use App\Models\ContactInformation;
 
 class ContactController extends Controller
 {
     public function index()
     {
         $information = Information::first();
+        $contact_information = ContactInformation::first();
 
-        return view('contacts.index', compact('information'));
+        return view('contacts.index', compact('information', 'contact_information'));
     }
 
     public function test_view()

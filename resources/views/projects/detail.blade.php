@@ -3,6 +3,7 @@
 <!-- Include jQuery (ensure it's included before Slick) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <script src='//pchen66.github.io/js/three/three.min.js'></script>
 <script src='//pchen66.github.io/js/panolens/panolens.min.js'></script>
@@ -11,10 +12,6 @@
 <style>
     .image-container {
         height: 40rem;
-    }
-
-    .image-container:before {
-        content: attr(data-image);
     }
 
     .custom-map {
@@ -57,7 +54,7 @@
 <div style="background-color:#eeeeef">
     <div style="padding-top:5rem">
         <div class="container">
-            <div class="row">
+            <div class="row px-2">
                 <div class="col-sm-12">
                     <div class="text-center mx-auto py-3">
                         <h2 class="mt-0 fw-bolder">{{$projectType->name}}</h2>
@@ -65,55 +62,62 @@
                     </div>
                     <div class="row gx-4 gx-lg-5">
                         <div class="col-lg-7 justify-content-center">
-                            <img class="img-fluid" style="object-fit: cover;height:30rem!important;width:100%!important"
-                                src="{{env('APP_URL')}}{{$projectType->image}}" alt="..." />
+                            <div class="gallery-item">
+                                <a href="{{env('APP_URL')}}{{$projectType->image}}" data-lightbox="gallery">
+                                    <img src="{{env('APP_URL')}}{{$projectType->image}}"
+                                        style="object-fit: cover;height:30rem!important;width:100%!important" />
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-lg-5 py-5 py-md-0" style="background-color:#f37321">
-                            <div class="py-3 px-3">
-                                <h3 class="mt-0 ml-2 fw-bolder text-white">Spesifikasi</h3>
-                                <table class="table table-borderless" style="border-color: transparent!important;">
-                                    <thead class="text-white">
-                                        <tr>
-                                            <th style="align-content: center;">Luas Bangunan
-                                            </th>
-                                            <th class="text-white">: {{$projectType->luas_bangunan}} m2</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-white fw-bold">
-                                        <tr>
-                                            <td style="align-content: center;">Luas Tanah</td>
-                                            <td class="text-white">: {{$projectType->luas_tanah}} m2</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Fondasi</td>
-                                            <td class="text-white">: {{$projectType->fondasi}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Dinding</td>
-                                            <td class="text-white">: {{$projectType->dinding}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Plafon</td>
-                                            <td class="text-white">: {{$projectType->plafon}} meter</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Kamar Tidur</td>
-                                            <td class="text-white">: {{$projectType->kamar_tidur}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Kamar Mandi</td>
-                                            <td class="text-white">: {{$projectType->kamar_mandi}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Carport</td>
-                                            <td class="text-white">: {{$projectType->carport}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="align-content: center;">Air</td>
-                                            <td class="text-white">: {{$projectType->air}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                        <div class="col-lg-5 py-5 py-md-0">
+                            <div class="py-3" style="background-color:#f37321">
+                                <div class="px-2">
+                                    <h3 class="mt-0 ml-2 fw-bolder text-white">Spesifikasi</h3>
+                                    <table class="table table-borderless" style="border-color: transparent!important;">
+                                        <thead class="text-white">
+                                            <tr>
+                                                <th style="align-content: center;">Luas Bangunan
+                                                </th>
+                                                <th class="text-white">: {{$projectType->luas_bangunan}} m2</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-white fw-bold">
+                                            <tr>
+                                                <td style="align-content: center;">Luas Tanah</td>
+                                                <td class="text-white">: {{$projectType->luas_tanah}} m2</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Fondasi</td>
+                                                <td class="text-white">: {{$projectType->fondasi}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Dinding</td>
+                                                <td class="text-white">: {{$projectType->dinding}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Plafon</td>
+                                                <td class="text-white">: {{$projectType->plafon}} meter</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Kamar Tidur</td>
+                                                <td class="text-white">: {{$projectType->kamar_tidur}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Kamar Mandi</td>
+                                                <td class="text-white">: {{$projectType->kamar_mandi}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Carport</td>
+                                                <td class="text-white">: {{$projectType->carport}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="align-content: center;">Air</td>
+                                                <td class="text-white">: {{$projectType->air}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,10 +131,10 @@
             <div class="row">
                 <div class="multiple-items">
                     @foreach($projectTypeImages as $p)
-                    <div class="col-sm-4 py-4 gallery-item">
+                    <div class="col-sm-4 py-4 px-2 gallery-item">
                         <a href="{{env('APP_URL')}}{{$p->image}}" data-lightbox="gallery">
                             <img src="{{env('APP_URL')}}{{$p->image}}"
-                                style="height:20rem!important;width:100%;object-fit:cover" />
+                                style="height:20rem!important;width:100%!important;object-fit:cover" />
                         </a>
                     </div>
                     @endforeach
@@ -158,16 +162,77 @@
             }
         }
     </style>
+    <style>
+        .slick-prev,
+        .slick-next {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #000;
+            /* Customize arrow color */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
 
+        .slick-prev {
+            left: -30px;
+            /* Adjust to increase the gap from the left edge of the image */
+        }
+
+        .slick-next {
+            right: -30px;
+            /* Adjust to increase the gap from the right edge of the image */
+        }
+
+        @media (max-width: 768px) {
+            .slick-prev {
+                left: 10px;
+                background-color: #ffffff;
+                border-radius: 20px;
+                padding: 10px !important;
+                filter: drop-shadow(rgba(22, 22, 22, 0.445) 3px 3px 10px);
+            }
+
+            .slick-next {
+                right: 10px;
+                background-color: #ffffff;
+                border-radius: 20px;
+                padding: 10px !important;
+                filter: drop-shadow(rgba(22, 22, 22, 0.445) 3px 3px 10px);
+            }
+        }
+
+        .slick-prev:hover,
+        .slick-next:hover {
+            color: #666;
+            /* Customize hover color */
+        }
+
+        .image-container {
+            position: relative;
+            /* Ensure arrows are positioned relative to the container */
+        }
+    </style>
+
+
+    @if($projectTypeImages360->isNotEmpty())
     <div class="container pb-5 pt-5 px-0">
         <div class="col-sm-12">
             <div class="row">
-                <div class="grid grid-cols-6">
-                    <div class='image-container'></div>
+                <div class="multiple-items2">
+                    @foreach($projectTypeImages360 as $image)
+                    <div class="col-sm-4 py-4">
+                        <div class="image-container" data-image="{{ asset($image->image_360) }}">
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+    @endif
 </div>
 
 @endsection
@@ -182,7 +247,7 @@
         var galleryItemsCount = $('.gallery-item').length;
 
         // Initialize Slick slider if there are 3 or more items
-        if (galleryItemsCount >= 3) {
+        @if($projectTypeImages->count() >= 3)
             $('.multiple-items').slick({
                 infinite: true,
                 slidesToShow: 3,
@@ -207,10 +272,9 @@
                     }
                 ]
             });
-        } else {
-            // Add 'side-by-side' class if there are fewer than 3 items
-            $('.multiple-items').addClass('side-by-side');
-        }
+        @else
+        $('.multiple-items').addClass('side-by-side');
+        @endif
 
         $('.gallery-item a').on('click', function(){
             // Remove the 'active' class from all gallery items
@@ -222,22 +286,30 @@
     });
 </script>
 <script type="text/javascript">
-    const d = document;
-    d.addEventListener('DOMContentLoaded', () => {
-        const viewer = new PANOLENS.Viewer({
-            'container': d.querySelector('.image-container')
+    $(document).ready(function(){
+        $('.multiple-items2').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            autoplay: false,
+            swipe: false,
+            draggable: false,
+            prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left" style="color:#f37321"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right" style="color:#f37321"></i></button>',
         });
 
-        const images = ['{{ asset($projectType->image_360) }}'];
-
-        viewer.add(new PANOLENS.ImagePanorama(images[0]));
-
-        d.querySelector('button').addEventListener('click', e => {
-            e.target.dataset.index = 1 - e.target.dataset.index;
-            let imgpath = images[Number(e.target.dataset.index)];
-            viewer.dispose();
-            viewer.add(new PANOLENS.ImagePanorama(imgpath));
-        })
-    })
+        const containers = document.querySelectorAll('.image-container');
+        containers.forEach(container => {
+            const imageUrl = container.getAttribute('data-image');
+            const viewer = new PANOLENS.Viewer({
+                container: container
+            });
+            const panorama = new PANOLENS.ImagePanorama(imageUrl);
+            viewer.add(panorama);
+        });
+    });
 </script>
+
+
 @endsection
