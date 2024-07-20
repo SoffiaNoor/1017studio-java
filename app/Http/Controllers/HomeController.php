@@ -25,6 +25,10 @@ class HomeController extends Controller
             return $project;
         });
 
-        return view('index', compact('information', 'news', 'facility', 'project', 'projects'));
+        $latestNews = News::where('is_show', 1)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('index', compact('information', 'news', 'facility', 'project', 'projects', 'latestNews'));
     }
 }

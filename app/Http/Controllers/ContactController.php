@@ -48,14 +48,19 @@ class ContactController extends Controller
             $formData = $request->all();
 
             Contact::create($formData);
+            // Get the brochure file path from the database
+            $brochure = ContactInformation::first()->file;
 
-            Mail::to($formData['email'])->send(new TestEmail($formData));
+            // Construct the full URL for the brochure
+            $brochureUrl = env('APP_URL') . $brochure;
 
-            Mail::to($information->email)->send(new ContactMail($formData));
+            // Store the brochure URL in session
+            session()->flash('success', 'You have successfully submitted the form! Your brochure download will start shortly.');
+            session()->flash('brochureUrl', $brochureUrl);
 
-            return redirect()->route('home#contactForm')->with(['success' => 'You have already submitted the form!']);
+            return redirect()->route('home', ['#contactForm'])->with(['success' => 'You have already submitted the form!']);
         } catch (\Exception $e) {
-            return redirect()->route('home#contactForm')->with('error', 'Failed to save the data. Put in a valid format.');
+            return redirect()->route('home', ['#contactForm'])->with('error', 'Failed to save the data. Put in a valid format.');
         }
     }
 
@@ -84,13 +89,43 @@ class ContactController extends Controller
 
             Contact::create($formData);
 
-            Mail::to($formData['email'])->send(new TestEmail($formData));
+            // Mail::to($formData['email'])->send(new TestEmail($formData));
 
-            Mail::to($information->email)->send(new ContactMail($formData));
+            // Mail::to($information->email)->send(new ContactMail($formData));
 
-            return redirect()->back()->with('success', 'You have successfully submitted the form!');
+            $brochure = ContactInformation::first()->file;
+
+            // Construct the full URL for the brochure
+            $brochureUrl = env('APP_URL') . $brochure;
+
+            // Store the brochure URL in session
+            session()->flash('success', 'You have successfully submitted the form! Your brochure download will start shortly.');
+            session()->flash('brochureUrl', $brochureUrl);
+
+            // Return response with success message and brochure URL
+            return redirect()->route('home', ['#contactForm'])->with(['success' => 'You have already submitted the form!']);
+
+
+            // return redirect()->back()->with('success', 'You have successfully submitted the form!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to save the data. Please try again.');
+            return redirect()->route('home', ['#contactForm'])->with('error', 'Failed to save the data. Put in a valid format.');
         }
+    }
+
+    public function downloadBrochure()
+    {
+        // Check if there is a brochure URL in the session
+        if (session()->has('brochureUrl')) {
+            $brochureUrl = session('brochureUrl');
+
+            // Remove the brochure URL from the session
+            session()->forget('brochureUrl');
+
+            // Redirect the user to the brochure URL
+            return redirect($brochureUrl);
+        }
+
+        // If no brochure URL in the session, redirect back with an error
+        return redirect()->back()->with('error', 'Brochure file not found.');
     }
 }

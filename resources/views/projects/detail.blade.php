@@ -218,6 +218,19 @@
 
 
     @if($projectTypeImages360->isNotEmpty())
+    @if(count($projectTypeImages360) == 1)
+    <div class="container pb-5 pt-5 px-0">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="grid grid-cols-6">
+                    @foreach($projectTypeImages360 as $image)
+                    <div class="image-container" data-image="{{ asset($image->image_360) }}"></div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
     <div class="container pb-5 pt-5 px-0">
         <div class="col-sm-12">
             <div class="row">
@@ -232,6 +245,7 @@
             </div>
         </div>
     </div>
+    @endif
     @endif
 </div>
 

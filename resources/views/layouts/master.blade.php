@@ -309,13 +309,19 @@ use Illuminate\Support\Str;
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-5 my-3">
-                            <h5 class="text-white pl-2 pb-0 fw-bold my-0">Contact Form :</h5>
+                            <h5 class="text-white pl-2 pb-0 fw-bold my-0">Brocure & Contact Form :</h5>
+                            <p class="text-white pl-2 pb-0 my-0">Fill form to get the brochure</p>
                             <div class="row" style="place-content: center">
                                 @if(session('success'))
                                 <div class="alert alert-success m-2"
                                     style="color:white;font-weight:bold;background:#31a72b!important">
                                     {{ session('success') }}
                                 </div>
+                                @if(session('brochureUrl'))
+                                <script>
+                                    window.open("{{ session('brochureUrl') }}", '_blank');
+                                </script>
+                                @endif
                                 @endif
                                 @if(session('error'))
                                 <div class="alert alert-danger m-2"
@@ -323,7 +329,7 @@ use Illuminate\Support\Str;
                                     {{ session('error') }}
                                 </div>
                                 @endif
-                                <form method="POST" action="{{ route('footerForm.store') }}" class="row g-2 pt-2 mt-2"
+                                <form method="POST" action="{{ route('footerForm.store') }}" class="row g-2 mt-2"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-lg-12 col-sm-12">
@@ -389,7 +395,7 @@ use Illuminate\Support\Str;
                                     <div class="col-8 d-grid">
                                         <button class="btn btn-sm py-1 fw-bold"
                                             style="background-color:white;color:#f37321;width:50%" id="submitButton"
-                                            type="submit"><span>SEND MESSAGE</span></button>
+                                            type="submit"><span>SUBMIT</span></button>
                                     </div>
                                 </form>
 

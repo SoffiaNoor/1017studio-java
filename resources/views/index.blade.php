@@ -11,30 +11,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <!--Font Awesome / Icon -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        type='text/css'>
+        type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-    <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- ElevateZoom -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
-
-    <!-- Lightbox2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .video-responsive {
@@ -302,12 +288,13 @@ use Illuminate\Support\Str;
         </div>
     </nav>
     <!-- Masthead-->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @foreach($news as $s)
+            @foreach($latestNews as $s)
+            @if($s->is_show == 1)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <header class="masthead" id="home"
-                    style="background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{env('APP_URL')}}{{$s->image}}'); background-size: cover">
+                    style="background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{ env('APP_URL') }}{{ $s->image }}'); background-size: cover">
                     <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-left"
                         style="place-content: center;">
                         <div class="col-12" style="position: relative;">
@@ -317,24 +304,31 @@ use Illuminate\Support\Str;
                                     <div class="col-lg-6">
                                         <div data-aos="fade-right" data-aos-duration="1000">
                                             <h1 class="text-white fw-bold" style="text-transform:uppercase;">{{
-                                                $s->title
-                                                }}</h1>
+                                                $s->title }}</h1>
                                             <a href="{{ route('news.show', $s->id) }}"
                                                 class="btn btn-bla text-white mt-2"
                                                 style="background-color:#f37321;border-radius:0;font-size:15pt">More
                                                 Info</a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                    </div>
+                                    <div class="col-lg-6"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </header>
             </div>
+            @endif
             @endforeach
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 
     <section class="page-section" data-aos="fade-up" data-aos-duration="1000" id="about"
@@ -505,13 +499,19 @@ use Illuminate\Support\Str;
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-5 my-3">
-                            <h5 class="text-white pl-2 pb-0 fw-bold my-0">Contact Form :</h5>
+                            <h5 class="text-white pl-2 pb-0 fw-bold my-0">Brocure & Contact Form :</h5>
+                            <p class="text-white pl-2 pb-0 my-0">Fill form to get the brochure</p>
                             <div class="row" style="place-content: center">
                                 @if(session('success'))
                                 <div class="alert alert-success m-2"
                                     style="color:white;font-weight:bold;background:#31a72b!important">
                                     {{ session('success') }}
                                 </div>
+                                @if(session('brochureUrl'))
+                                <script>
+                                    window.open("{{ session('brochureUrl') }}", '_blank');
+                                </script>
+                                @endif
                                 @endif
                                 @if(session('error'))
                                 <div class="alert alert-danger m-2"
@@ -519,8 +519,8 @@ use Illuminate\Support\Str;
                                     {{ session('error') }}
                                 </div>
                                 @endif
-                                <form method="POST" action="{{ route('store-contact') }}"
-                                    class="row g-2 pt-2 mt-2 text-right" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('store-contact') }}" class="row g-2 text-right"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-lg-12 col-sm-12">
                                         <div class="form-floating">
@@ -585,7 +585,7 @@ use Illuminate\Support\Str;
                                     <div class="col-8 d-grid">
                                         <button class="btn btn-sm py-1 fw-bold"
                                             style="background-color:white;color:#f37321;width:50%" id="submitButton"
-                                            type="submit"><span>SEND MESSAGE</span></button>
+                                            type="submit"><span>SUBMIT</span></button>
                                     </div>
                                 </form>
                             </div>
@@ -603,18 +603,13 @@ use Illuminate\Support\Str;
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </script>
-    <!-- Lightbox2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-    <!-- elevateZoom JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
     <script>
         AOS.init();

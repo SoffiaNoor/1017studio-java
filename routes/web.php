@@ -31,3 +31,6 @@ Route::middleware('web')->group(function () {
     Route::get('/project/detail/{id_project}/{id_project_type}', [ProjectController::class, 'detail'])->name('project.detail');
 });
 
+Route::get('/download-brochure', [ContactController::class, 'downloadBrochure'])->name('downloadBrochure');
+
+
