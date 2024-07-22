@@ -34,7 +34,7 @@ Route::middleware('web')->group(function () {
 Route::get('/download-brochure', [ContactController::class, 'downloadBrochure'])->name('downloadBrochure');
 
 
-Route::get('/sym-link', function () {
+/*Route::get('/sym-link', function () {
     $target = $_SERVER['DOCUMENT_ROOT']."/java/public/images";
     $link = $_SERVER['DOCUMENT_ROOT']."/images";
     if(symlink( $target, $link )){
@@ -42,5 +42,5 @@ Route::get('/sym-link', function () {
     } else {
         echo "Gagal.";
     }
-})->name('symlink');
+})->name('symlink');*/
 
