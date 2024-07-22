@@ -155,6 +155,12 @@
             }
         }
 
+        @media (min-width: 768px) {
+            .centering-text {
+                text-align-last: center;
+            }
+        }
+
         .overlayer {
             position: fixed;
             top: 0;
@@ -431,13 +437,13 @@ use Illuminate\Support\Str;
     <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef">
         <div class="container">
             <div class="row" style="align-items: center;">
-                <div class="col-sm-4 py-2" style="text-align-last: center;">
+                <div class="col-sm-4 py-2 centering-text">
                     <h3 class="h5 fw-bold mb-2">Developed & Constructed by :</h3>
                 </div>
-                <div class="col-sm-4 py-2" style="text-align-last: center;">
+                <div class="col-sm-4 py-2 centering-text">
                     <img src="{{asset('assets/img/Mup.png')}}" style="width:90%" />
                 </div>
-                <div class="col-sm-4 py-2" style="text-align-last: center;">
+                <div class="col-sm-4 py-2 centering-text">
                     <img src="{{asset('assets/img/Muk.png')}}" style="width:85%" />
                 </div>
             </div>
