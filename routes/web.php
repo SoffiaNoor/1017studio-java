@@ -34,3 +34,13 @@ Route::middleware('web')->group(function () {
 Route::get('/download-brochure', [ContactController::class, 'downloadBrochure'])->name('downloadBrochure');
 
 
+Route::get('/sym-link', function () {
+    $target = $_SERVER['DOCUMENT_ROOT']."/java/public/images";
+    $link = $_SERVER['DOCUMENT_ROOT']."/images";
+    if(symlink( $target, $link )){
+        echo "OK.";
+    } else {
+        echo "Gagal.";
+    }
+})->name('symlink');
+
