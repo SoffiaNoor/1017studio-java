@@ -31,13 +31,13 @@ class ContactController extends Controller
 
             $this->validate($request, [
                 'name' => 'required',
-                'subject' => 'required',
+                // 'subject' => 'required',
                 'handphone' => 'required',
                 'email' => 'required|email',
                 'message' => 'required|string',
             ], [
                 'name.required' => 'Name is required.',
-                'subject.required' => 'Subject is required.',
+                // 'subject.required' => 'Subject is required.',
                 'handphone.required' => 'Handphone is required.',
                 'email.required' => 'Email is required.',
                 'email.email' => 'Email must be in a valid format.',
@@ -71,13 +71,13 @@ class ContactController extends Controller
 
             $this->validate($request, [
                 'name' => 'required',
-                'subject' => 'required',
+                // 'subject' => 'required',
                 'handphone' => 'required',
                 'email' => 'required|email',
                 'message' => 'required|string',
             ], [
                 'name.required' => 'Name is required.',
-                'subject.required' => 'Subject is required.',
+                // 'subject.required' => 'Subject is required.',
                 'handphone.required' => 'Handphone is required.',
                 'email.required' => 'Email is required.',
                 'email.email' => 'Email must be in a valid format.',

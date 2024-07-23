@@ -544,7 +544,8 @@ use Illuminate\Support\Str;
                                                 type="text" placeholder="Enter your Name..."
                                                 data-sb-validations="required" required />
                                             <label for="name" class="fw-bold"
-                                                style="color:#495057; font-size: small;">Nama</label>
+                                                style="color:#495057; font-size: small;">Nama<span
+                                                    style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="name:required">A name is
                                                 required.</div>
                                         </div>
@@ -555,7 +556,8 @@ use Illuminate\Support\Str;
                                                 type="phone" placeholder="62 987 654 321"
                                                 data-sb-validations="required,handphone" required />
                                             <label for="handphone" class="fw-bold"
-                                                style="color:#495057; font-size: small;">Handphone</label>
+                                                style="color:#495057; font-size: small;">Handphone<span
+                                                    style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="handphone:required">A
                                                 handphone is required.</div>
                                             <div class="invalid-feedback" data-sb-feedback="handphone:email">Handphone
@@ -568,7 +570,8 @@ use Illuminate\Support\Str;
                                                 type="email" placeholder="example@gmail.com"
                                                 data-sb-validations="required,email" required />
                                             <label for="email" class="fw-bold"
-                                                style="color:#495057; font-size: small;">Email</label>
+                                                style="color:#495057; font-size: small;">Email<span
+                                                    style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="email:required">An email is
                                                 required.</div>
                                             <div class="invalid-feedback" data-sb-feedback="email:email">Email is not
@@ -578,12 +581,9 @@ use Illuminate\Support\Str;
                                     <div class="col-lg-12 col-sm-12">
                                         <div class="form-floating">
                                             <input class="form-control form-control-sm" id="subject" name="subject"
-                                                type="text" placeholder="Enter your subject..."
-                                                data-sb-validations="required" required />
+                                                type="text" placeholder="Enter your subject..." />
                                             <label for="subject" class="fw-bold"
                                                 style="color:#495057; font-size: small;">Subject</label>
-                                            <div class="invalid-feedback" data-sb-feedback="subject:required">A subject
-                                                is required.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-sm-12">
@@ -593,7 +593,8 @@ use Illuminate\Support\Str;
                                                 style="height: 4rem;" data-sb-validations="required"
                                                 required></textarea>
                                             <label for="message" class="fw-bold"
-                                                style="color:#495057; font-size: small;">Message</label>
+                                                style="color:#495057; font-size: small;">Message<span
+                                                    style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="message:required">A message
                                                 is required.</div>
                                         </div>

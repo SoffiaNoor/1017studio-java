@@ -269,7 +269,7 @@ use Illuminate\Support\Str;
         style="background-color:white;height: -webkit-fill-available;align-content: center;">
         <div class="container px-4 px-lg-5" style="align-content: center;">
             <div class="text-center mx-auto py-3">
-                <img src="{{env('APP_URL')}}{{$information->logo_favicon}}" style="max-width:400px;width:300px;" />
+                <img src="{{env('APP_URL')}}{{$information->logo_company}}" style="max-width:400px;width:300px;" />
                 <hr class="divider divider-black" />
                 <h2 class="mt-0 fw-bolder text-center">We are currently undergoing maintenance</h2>
                 <h2 class="mt-0 fw-bolder text-center">We'll be back shortly. Thank you for your patience!</h2>
