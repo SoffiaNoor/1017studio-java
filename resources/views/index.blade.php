@@ -395,11 +395,11 @@ use Illuminate\Support\Str;
             <hr class="divider" style="background-color:#f37321;width:70%;max-width:10rem" />
             <div class="row gx-4 gx-lg-5 portfolio-items" style="place-content: center">
                 <div class="col-sm-12">
-                    <div class="row" style="text-align: -webkit-center;">
+                    <div class="row d-flex flex-wrap justify-content-center" style="text-align: -webkit-center;">
                         @foreach ($news as $a)
-                        <div class="col-lg-4 col-sm-4 col-md-6 py-3">
-                            <a href="{{ route('news.show', $a->id) }}">
-                                <div class="card" style="width: 20rem; position: relative;">
+                        <div class="col-lg-4 col-sm-4 col-md-6 py-3 d-flex">
+                            <a href="{{ route('news.show', $a->id) }}" class="d-flex w-100">
+                                <div class="card" style="width: 100%; position: relative;">
                                     <div class="image-container" style="position: relative;">
                                         <img class="card-img-top" src="{{env('APP_URL')}}{{$a->image}}"
                                             alt="Card image cap">
@@ -410,7 +410,7 @@ use Illuminate\Support\Str;
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text">{{ Str::limit(strip_tags($a->description), 300) }}</p>
+                                        <p class="card-text">{{ Str::limit(strip_tags($a->description), 200) }}</p>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>
@@ -424,6 +424,16 @@ use Illuminate\Support\Str;
             </div>
         </div>
     </section>
+
+    <style>
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+    </style>
+
 
     <div class="position-fixed bottom-0 end-0 mb-3 me-3" style="z-index: 999" data-aos="fade-up"
         data-aos-duration="1000">
