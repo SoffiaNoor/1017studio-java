@@ -53,7 +53,8 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text">{{ Str::limit(strip_tags($a->description), 200) }}</p>
+                                        <p class="card-text" style="text-align: justify; hyphens: auto;">{{
+                                            Str::limit(strip_tags($a->description), 300) }}</p>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>

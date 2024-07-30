@@ -57,6 +57,38 @@
             .mobile-only {
                 text-align: center !important;
             }
+
+            .header-video-1 {
+                height: auto !important;
+                background-color: #eeeeef;
+                margin-top: 90px;
+                /* padding-top:190px; */
+            }
+
+            .video-container {
+                position: relative;
+                width: auto;
+                height: 100% !important;
+                overflow: hidden;
+                padding-top: 56.25%;
+            }
+
+            .video-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0 !important;
+                width: auto !important;
+                height: 100% !important;
+            }
+
+            #youtube-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100% !important;
+                border: 0;
+            }
         }
 
         .btn:hover {
@@ -244,6 +276,76 @@
         .overlay-text {
             padding: 10px;
         }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0 !important;
+            width: 100% !important;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding-top: 56.25%;
+        }
+
+        #youtube-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            /* Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .video-overlay2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            /* Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .social-icon {
+            width: auto;
+            /* Set the desired width */
+            height: 30px;
+            /* Set the desired height */
+        }
+
+        .header-video-1 {
+            height: 85%;
+            background-color: #eeeeef;
+        }
     </style>
 </head>
 
@@ -293,48 +395,17 @@ use Illuminate\Support\Str;
             </div>
         </div>
     </nav>
-    <!-- Masthead-->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            @foreach($latestNews as $s)
-            @if($s->is_show == 1)
-            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                <header class="masthead" id="home"
-                    style="background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{ env('APP_URL') }}{{ $s->image }}'); background-size: cover">
-                    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-left"
-                        style="place-content: center;">
-                        <div class="col-12" style="position: relative;">
-                            <div class="background-colored for-padding-left"></div>
-                            <div class="container mobile-only" style="padding-top:3rem;padding-bottom:3rem;">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div data-aos="fade-right" data-aos-duration="1000">
-                                            <h1 class="text-white fw-bold" style="text-transform:uppercase;">{{
-                                                $s->title }}</h1>
-                                            <a href="{{ route('news.show', $s->id) }}"
-                                                class="btn btn-bla text-white mt-2"
-                                                style="background-color:#f37321;border-radius:0;font-size:15pt">More
-                                                Info</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
-            @endif
-            @endforeach
+
+    <div class="header-video-1">
+        <div class="video-container">
+            <iframe id="youtube-video"
+                src="https://www.youtube.com/embed/{{ $information->header_video }}?autoplay=1&loop=1&controls=0&showinfo=0&rel=0&autohide=1&mute=1"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
 
     <section class="page-section" data-aos="fade-up" data-aos-duration="1000" id="about"
@@ -346,7 +417,7 @@ use Illuminate\Support\Str;
             </div>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6 py-5 py-md-0">
-                    <p class="mb-4" style="text-align: justify">{!! substr($information->description,0,700).'...'!!}</p>
+                    <p class="mb-4" style="text-align: justify; hyphens: auto;">{!! substr($information->description,0,700).'...'!!}</p>
                     <a href="/about" class="btn btn-bla text-white mt-2 mb-4"
                         style="background-color:#f37321;border-radius:0;font-size:15pt">More
                         Info</a>
@@ -381,7 +452,7 @@ use Illuminate\Support\Str;
                             <h3 class="h5 fw-bold mb-2" style="color:white">{{$a->title}}</h3>
                         </div>
                     </div>
-                    <p class="mb-4 text-white" style="text-align: justify">{{$a->description}}</p>
+                    <p class="mb-4 text-white" style="text-align: center!important">{{$a->description}}</p>
                 </div>
                 @endforeach
             </div>
@@ -410,7 +481,9 @@ use Illuminate\Support\Str;
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text">{{ Str::limit(strip_tags($a->description), 200) }}</p>
+                                        <p class="card-text" style="text-align: justify; hyphens: auto;">
+                                            {{ Str::limit(strip_tags($a->description), 300) }}
+                                        </p>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>
@@ -444,42 +517,50 @@ use Illuminate\Support\Str;
         </a>
     </div>
 
-    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef">
+    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef;text-align: center;">
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-sm-4 py-2 centering-text">
-                    <h3 class="h5 fw-bold mb-2">Developed & Constructed by :</h3>
+                    <h5 class="h5 fw-bold mb-2">Developed & Constructed by :</h5>
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Mup.png')}}" style="width:90%" />
+                    <img src="{{asset('assets/img/Mup.png')}}" style="width:80%" />
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Muk.png')}}" style="width:85%" />
+                    <img src="{{asset('assets/img/Muk.png')}}" style="width:75%" />
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="background:#f37321" id="contactForm">
-        <div class="container">
+    <footer
+        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;"
+        id="contactForm">
+        <div class="footer-overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1;">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-5" style="align-content: center;">
                             <img src="{{env('APP_URL')}}{{$information->logo_header}}" class="px-3 py-2 my-1"
-                                style="width:50%" />
+                                style="width: 50%;" />
                             <div class="col-sm-12 px-3 pb-3">
                                 <p class="text-white fw-bold">{{$information->name}}</p>
-                                <table class="table table-borderless" style="border-color: transparent!important;">
+                                <table class="table table-borderless" style="border-color: transparent !important;">
                                     <tbody>
                                         <tr>
                                             <td class="py-0"><i class="bi bi-geo-alt-fill text-white"></i></td>
                                             <td class="text-white py-0">{{$information->address}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="py-0" style="align-content: center;"><i
-                                                    class="bi bi-telephone-fill text-white"></i></td>
-                                            <td class="text-white py-0">{{$information->phone}}</td>
+                                            <td class="py-0" style="align-content: center;">
+                                                <i class="bi bi-telephone-fill text-white"></i>
+                                            </td>
+                                            <td class="text-white py-0">{{
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -488,24 +569,36 @@ use Illuminate\Support\Str;
                                         <tr>
                                             <th>Follow us:</th>
                                             @if(!empty($information->instagram))
-                                            <th><a target="_blank" href="{{$information->instagram}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo ig.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->instagram}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo ig.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->youtube))
-                                            <th><a target="_blank" href="{{$information->youtube}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo yt.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->youtube}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo yt.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->facebook))
-                                            <th><a target="_blank" href="{{$information->facebook}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo fb.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->facebook}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo fb.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->tiktok))
-                                            <th><a target="_blank" href="{{$information->tiktok}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo tiktok.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->tiktok}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo tiktok.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -559,9 +652,11 @@ use Illuminate\Support\Str;
                                                 style="color:#495057; font-size: small;">Handphone<span
                                                     style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="handphone:required">A
-                                                handphone is required.</div>
+                                                handphone
+                                                is required.</div>
                                             <div class="invalid-feedback" data-sb-feedback="handphone:email">Handphone
-                                                is not valid.</div>
+                                                is
+                                                not valid.</div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-sm-12">
@@ -596,7 +691,8 @@ use Illuminate\Support\Str;
                                                 style="color:#495057; font-size: small;">Message<span
                                                     style="color:red">*</span></label>
                                             <div class="invalid-feedback" data-sb-feedback="message:required">A message
-                                                is required.</div>
+                                                is
+                                                required.</div>
                                         </div>
                                     </div>
                                     <div class="col-8 d-grid">
@@ -618,6 +714,7 @@ use Illuminate\Support\Str;
         </div>
     </footer>
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
@@ -631,108 +728,130 @@ use Illuminate\Support\Str;
     <script>
         AOS.init();
 
-var toTopButton = document.getElementById("to-top-button");
+        var toTopButton = document.getElementById("to-top-button");
 
-window.onscroll = function () {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        toTopButton.classList.remove("d-none");
-    } else {
-        toTopButton.classList.add("d-none");
-    }
-}
-
-function goToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    var myCarousel = document.querySelector('#carouselExampleSlidesOnly')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 6000, // Adjust the interval as needed (in milliseconds)
-        wrap: true
-    })
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    let visibleItems = 6;
-    let totalDisplayedItems = 0;
-
-    // Initially hide all items beyond visibleItems
-    portfolioItems.forEach((item, index) => {
-        if (index >= visibleItems) {
-            item.style.display = 'none';
-        } else {
-            totalDisplayedItems++;
-        }
-    });
-         // Initially hide the Load More button if there are 6 or fewer portfolio items
-         if (portfolioItems.length <= 6) {
-            loadMoreBtn.style.display = 'none';
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                toTopButton.classList.remove("d-none");
+            } else {
+                toTopButton.classList.add("d-none");
+            }
         }
 
-    loadMoreBtn.addEventListener('click', function () {
-        let newlyDisplayedItems = 0;
-
-        // Show next batch of items or remaining items if less than a full batch
-        for (let i = totalDisplayedItems; i < portfolioItems.length && newlyDisplayedItems < 6; i++) {
-            portfolioItems[i].style.display = 'block';
-            totalDisplayedItems++;
-            newlyDisplayedItems++;
+        function goToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Hide Load More button if all items are displayed
-        if (totalDisplayedItems >= portfolioItems.length) {
-            loadMoreBtn.style.display = 'none';
-        }
-    });
-});
+        document.addEventListener("DOMContentLoaded", function () {
+            var myCarousel = document.querySelector('#carouselExampleSlidesOnly')
+            var carousel = new bootstrap.Carousel(myCarousel, {
+                interval: 6000, // Adjust the interval as needed (in milliseconds)
+                wrap: true
+            })
+        });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const checkbox = document.getElementById('flexCheckChecked');
-    const submitButton = document.getElementById('submitButton');
+        document.addEventListener('DOMContentLoaded', function () {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let visibleItems = 6;
+            let totalDisplayedItems = 0;
 
-    checkbox.addEventListener('change', function () {
-        if (checkbox.checked) {
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
-        }
-    });
-});
+            // Initially hide all items beyond visibleItems
+            portfolioItems.forEach((item, index) => {
+                if (index >= visibleItems) {
+                    item.style.display = 'none';
+                } else {
+                    totalDisplayedItems++;
+                }
+            });
+                // Initially hide the Load More button if there are 6 or fewer portfolio items
+                if (portfolioItems.length <= 6) {
+                    loadMoreBtn.style.display = 'none';
+                }
+
+            loadMoreBtn.addEventListener('click', function () {
+                let newlyDisplayedItems = 0;
+
+                // Show next batch of items or remaining items if less than a full batch
+                for (let i = totalDisplayedItems; i < portfolioItems.length && newlyDisplayedItems < 6; i++) {
+                    portfolioItems[i].style.display = 'block';
+                    totalDisplayedItems++;
+                    newlyDisplayedItems++;
+                }
+
+                // Hide Load More button if all items are displayed
+                if (totalDisplayedItems >= portfolioItems.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkbox = document.getElementById('flexCheckChecked');
+            const submitButton = document.getElementById('submitButton');
+
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        });
     </script>
 
     <script>
         let mybutton = document.getElementById("btn-back-to-top");
 
-window.onscroll = function() {
-    scrollFunction();
-};
+        window.onscroll = function() {
+            scrollFunction();
+        };
 
-function scrollFunction() {
-    if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
-    ) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-}
+        function scrollFunction() {
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
 
-mybutton.addEventListener("click", backToTop);
+        mybutton.addEventListener("click", backToTop);
 
-function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
 
-setTimeout(function() {
-    document.getElementById('overlayer').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-    mybutton.style.display = "block"; // Show the back to top button when content is loaded
-}, 3000);
+        setTimeout(function() {
+            document.getElementById('overlayer').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            mybutton.style.display = "block"; // Show the back to top button when content is loaded
+        }, 3000);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var iframe = document.getElementById('header_video_iframe');
+            var src = iframe.src;
+
+            // Reload the iframe to ensure autoplay works
+            iframe.src = '';
+            iframe.src = src;
+        });
+
+        $(function(){
+        function resizeVideo() {
+            $('#video').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+        }
+
+        resizeVideo();
+
+        $(window).resize(function(){
+            resizeVideo();
+        });
+        });
     </script>
 </body>
 

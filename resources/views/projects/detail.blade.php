@@ -218,7 +218,7 @@
 
 
     @if($projectTypeImages360->isNotEmpty())
-    @if(count($projectTypeImages360) == 1)
+    @if(count($projectTypeImages360) > 2)
     <div class="container pb-5 pt-5 px-0">
         <div class="col-sm-12">
             <div class="row">
@@ -236,7 +236,7 @@
             <div class="row">
                 <div class="multiple-items2">
                     @foreach($projectTypeImages360 as $image)
-                    <div class="col-sm-4 py-4">
+                    <div class="col-sm-12 py-4">
                         <div class="image-container" data-image="{{ asset($image->image_360) }}">
                         </div>
                     </div>
@@ -256,7 +256,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function() {
         // Check the number of gallery items
         var galleryItemsCount = $('.gallery-item').length;
 
@@ -290,15 +290,36 @@
         $('.multiple-items').addClass('side-by-side');
         @endif
 
-        $('.gallery-item a').on('click', function(){
+        $('.gallery-item a').on('click', function() {
             // Remove the 'active' class from all gallery items
             $('.gallery-item').removeClass('active');
 
             // Add the 'active' class to the clicked item's parent
             $(this).parent().addClass('active');
         });
+
+        // Lightbox2 custom handling
+        // Add class when Lightbox2 opens
+        $(document).on('click', '[data-lightbox]', function() {
+            $('body').addClass('no-scroll');
+        });
+
+        // Remove class when Lightbox2 closes
+        $(document).on('click', '.lightbox', function(e) {
+            if ($(e.target).hasClass('lightbox')) {
+                $('body').removeClass('no-scroll');
+            }
+        });
+
+        // For closing the Lightbox with the ESC key
+        $(document).on('keydown', function(e) {
+            if (e.key === "Escape") {
+                $('body').removeClass('no-scroll');
+            }
+        });
     });
 </script>
+
 <script type="text/javascript">
     $(document).ready(function(){
         $('.multiple-items2').slick({

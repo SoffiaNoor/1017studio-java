@@ -185,6 +185,13 @@
             color: #111111 !important;
             opacity: 0 !important;
         }
+
+        .social-icon {
+            width: auto;
+            /* Set the desired width */
+            height: 30px;
+            /* Set the desired height */
+        }
     </style>
 </head>
 
@@ -244,24 +251,29 @@ use Illuminate\Support\Str;
     </div>
     @yield('content')
 
-    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef">
+    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef;text-align: center;">
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-sm-4 py-2 centering-text">
-                    <h3 class="h5 fw-bold mb-2">Developed & Constructed by :</h3>
+                    <h5 class="h5 fw-bold mb-2">Developed & Constructed by :</h5>
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Mup.png')}}" style="width:90%" />
+                    <img src="{{asset('assets/img/Mup.png')}}" style="width:80%" />
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Muk.png')}}" style="width:85%" />
+                    <img src="{{asset('assets/img/Muk.png')}}" style="width:75%" />
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="background:#f37321" id="contactForm">
-        <div class="container">
+    <footer
+        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;"
+        id="contactForm">
+        <div class="footer-overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1;">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="row">
@@ -277,9 +289,12 @@ use Illuminate\Support\Str;
                                             <td class="text-white py-0">{{$information->address}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="py-0" style="align-content: center;"><i
-                                                    class="bi bi-telephone-fill text-white"></i></td>
-                                            <td class="text-white py-0">{{$information->phone}}</td>
+                                            <td class="py-0" style="align-content: center;">
+                                                <i class="bi bi-telephone-fill text-white"></i>
+                                            </td>
+                                            <td class="text-white py-0">{{
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -288,24 +303,36 @@ use Illuminate\Support\Str;
                                         <tr>
                                             <th>Follow us:</th>
                                             @if(!empty($information->instagram))
-                                            <th><a target="_blank" href="{{$information->instagram}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo ig.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->instagram}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo ig.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->youtube))
-                                            <th><a target="_blank" href="{{$information->youtube}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo yt.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->youtube}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo yt.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->facebook))
-                                            <th><a target="_blank" href="{{$information->facebook}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo fb.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->facebook}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo fb.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                             @if(!empty($information->tiktok))
-                                            <th><a target="_blank" href="{{$information->tiktok}}" class="ml-2"><img
-                                                        src="{{asset('assets/img/Logo tiktok.png')}}"
-                                                        style="width:60%" /></a></th>
+                                            <th>
+                                                <a target="_blank" href="{{$information->tiktok}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo tiktok.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
                                             @endif
                                         </tr>
                                     </thead>
