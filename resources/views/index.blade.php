@@ -185,6 +185,13 @@
             .dropdown-menu {
                 transform: none !important;
             }
+
+            .header-video-1 {
+                height: auto !important;
+                background-color: #eeeeef;
+                margin-top: 90px;
+                /* padding-top:190px; */
+            }
         }
 
         @media (min-width: 768px) {
@@ -404,7 +411,7 @@ use Illuminate\Support\Str;
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
             </iframe>
-
+            <div class="video-overlay"></div>
         </div>
     </div>
 
@@ -417,7 +424,8 @@ use Illuminate\Support\Str;
             </div>
             <div class="row gx-4 gx-lg-5">
                 <div class="col-lg-6 py-5 py-md-0">
-                    <p class="mb-4" style="text-align: justify; hyphens: auto;">{!! substr($information->description,0,700).'...'!!}</p>
+                    <p class="mb-4" style="text-align: justify; hyphens: auto;">{!!
+                        substr($information->description,0,700).'...'!!}</p>
                     <a href="/about" class="btn btn-bla text-white mt-2 mb-4"
                         style="background-color:#f37321;border-radius:0;font-size:15pt">More
                         Info</a>
@@ -533,6 +541,7 @@ use Illuminate\Support\Str;
         </div>
     </section>
 
+    @if(!empty($information->footer_image))
     <footer
         style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;"
         id="contactForm">
@@ -713,6 +722,183 @@ use Illuminate\Support\Str;
             </div>
         </div>
     </footer>
+    @else
+    <footer style="background:#f37321" id="contactForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-5" style="align-content: center;">
+                            <img src="{{env('APP_URL')}}{{$information->logo_header}}" class="px-3 py-2 my-1"
+                                style="width: 50%;" />
+                            <div class="col-sm-12 px-3 pb-3">
+                                <p class="text-white fw-bold">{{$information->name}}</p>
+                                <table class="table table-borderless" style="border-color: transparent !important;">
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-0"><i class="bi bi-geo-alt-fill text-white"></i></td>
+                                            <td class="text-white py-0">{{$information->address}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-0" style="align-content: center;">
+                                                <i class="bi bi-telephone-fill text-white"></i>
+                                            </td>
+                                            <td class="text-white py-0">{{
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="text-white pb-1">
+                                    <thead>
+                                        <tr>
+                                            <th>Follow us:</th>
+                                            @if(!empty($information->instagram))
+                                            <th>
+                                                <a target="_blank" href="{{$information->instagram}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo ig.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
+                                            @endif
+                                            @if(!empty($information->youtube))
+                                            <th>
+                                                <a target="_blank" href="{{$information->youtube}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo yt.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
+                                            @endif
+                                            @if(!empty($information->facebook))
+                                            <th>
+                                                <a target="_blank" href="{{$information->facebook}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo fb.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
+                                            @endif
+                                            @if(!empty($information->tiktok))
+                                            <th>
+                                                <a target="_blank" href="{{$information->tiktok}}" class="ml-2">
+                                                    <img src="{{asset('assets/img/Logo tiktok.png')}}"
+                                                        class="social-icon" />
+                                                </a>
+                                            </th>
+                                            @endif
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-5 my-3">
+                            <h5 class="text-white pl-2 pb-0 fw-bold my-0">Brocure & Contact Form :</h5>
+                            <p class="text-white pl-2 pb-0 my-0">Fill form to get the brochure</p>
+                            <div class="row" style="place-content: center">
+                                @if(session('success'))
+                                <div class="alert alert-success m-2"
+                                    style="color:white;font-weight:bold;background:#31a72b!important">
+                                    {{ session('success') }}
+                                </div>
+                                @if(session('brochureUrl'))
+                                <script>
+                                    window.open("{{ session('brochureUrl') }}", '_blank');
+                                </script>
+                                @endif
+                                @endif
+                                @if(session('error'))
+                                <div class="alert alert-danger m-2"
+                                    style="color:white;background:#cd2a2a;font-weight:bold">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
+                                <form method="POST" action="{{ route('store-contact') }}" class="row g-2 text-right"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-floating">
+                                            <input class="form-control form-control-sm" id="name" name="name"
+                                                type="text" placeholder="Enter your Name..."
+                                                data-sb-validations="required" required />
+                                            <label for="name" class="fw-bold"
+                                                style="color:#495057; font-size: small;">Nama<span
+                                                    style="color:red">*</span></label>
+                                            <div class="invalid-feedback" data-sb-feedback="name:required">A name is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-floating">
+                                            <input class="form-control form-control-sm" id="handphone" name="handphone"
+                                                type="phone" placeholder="62 987 654 321"
+                                                data-sb-validations="required,handphone" required />
+                                            <label for="handphone" class="fw-bold"
+                                                style="color:#495057; font-size: small;">Handphone<span
+                                                    style="color:red">*</span></label>
+                                            <div class="invalid-feedback" data-sb-feedback="handphone:required">A
+                                                handphone
+                                                is required.</div>
+                                            <div class="invalid-feedback" data-sb-feedback="handphone:email">Handphone
+                                                is
+                                                not valid.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-floating">
+                                            <input class="form-control form-control-sm" id="email" name="email"
+                                                type="email" placeholder="example@gmail.com"
+                                                data-sb-validations="required,email" required />
+                                            <label for="email" class="fw-bold"
+                                                style="color:#495057; font-size: small;">Email<span
+                                                    style="color:red">*</span></label>
+                                            <div class="invalid-feedback" data-sb-feedback="email:required">An email is
+                                                required.</div>
+                                            <div class="invalid-feedback" data-sb-feedback="email:email">Email is not
+                                                valid.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-floating">
+                                            <input class="form-control form-control-sm" id="subject" name="subject"
+                                                type="text" placeholder="Enter your subject..." />
+                                            <label for="subject" class="fw-bold"
+                                                style="color:#495057; font-size: small;">Subject</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control form-control-sm" name="message" id="message"
+                                                type="text" placeholder="Enter your message here..."
+                                                style="height: 4rem;" data-sb-validations="required"
+                                                required></textarea>
+                                            <label for="message" class="fw-bold"
+                                                style="color:#495057; font-size: small;">Message<span
+                                                    style="color:red">*</span></label>
+                                            <div class="invalid-feedback" data-sb-feedback="message:required">A message
+                                                is
+                                                required.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8 d-grid">
+                                        <button class="btn btn-sm py-1 fw-bold"
+                                            style="background-color:white;color:#f37321;width:50%" id="submitButton"
+                                            type="submit"><span>SUBMIT</span></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="text-center text-white py-2">
+                        © {{ date('Y') }} Copyright PT. Mitra Usaha Propertindo All Right reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @endif
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

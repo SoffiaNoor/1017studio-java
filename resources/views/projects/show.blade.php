@@ -71,12 +71,12 @@
         </div>
     </div>
 
-    {{-- <div class="container pb-5 pt-5 px-0">
+    <div class="container pb-5 pt-5 px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="multiple-items">
                     @foreach($projectImages as $p)
-                    <div class="col-sm-4 py-4 px-2 gallery-item">
+                    <div class="col-sm-4 py-4 px-2 gallery-item2">
                         <a href="{{env('APP_URL')}}{{$p->image}}" data-lightbox="gallery">
                             <img src="{{env('APP_URL')}}{{$p->image}}"
                                 style="height:20rem!important;width:100%;object-fit:cover" />
@@ -86,78 +86,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-
-    <div class="container pb-5 pt-5 px-0">
-        <div class="col-sm-12">
-            <div class="row">
-                <div class="multiple-items">
-                    @foreach($projectImages as $p)
-                    <div class="col-sm-4 py-4 px-2 gallery-item">
-                        <a href="{{env('APP_URL')}}{{$p->image}}" data-lightbox="gallery">
-                            <img src="{{env('APP_URL')}}{{$p->image}}"
-                                style="height:20rem!important;width:100%!important;object-fit:cover" />
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
     </div>
-
-    <style>
-        .slick-prev,
-        .slick-next {
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #000;
-            /* Customize arrow color */
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-        }
-
-        .slick-prev {
-            left: -30px;
-            /* Adjust to increase the gap from the left edge of the image */
-        }
-
-        .slick-next {
-            right: -30px;
-            /* Adjust to increase the gap from the right edge of the image */
-        }
-
-        @media (max-width: 768px) {
-            .slick-prev {
-                left: 10px;
-                background-color: #ffffff;
-                border-radius: 20px;
-                padding: 10px !important;
-                filter: drop-shadow(rgba(22, 22, 22, 0.445) 3px 3px 10px);
-            }
-
-            .slick-next {
-                right: 10px;
-                background-color: #ffffff;
-                border-radius: 20px;
-                padding: 10px !important;
-                filter: drop-shadow(rgba(22, 22, 22, 0.445) 3px 3px 10px);
-            }
-        }
-
-        .slick-prev:hover,
-        .slick-next:hover {
-            color: #666;
-            /* Customize hover color */
-        }
-
-        .image-container {
-            position: relative;
-            /* Ensure arrows are positioned relative to the container */
-        }
-    </style>
 
     <style>
         .side-by-side .gallery-item {
@@ -211,7 +140,7 @@
                     <hr class="divider divider-black" />
                 </div>
                 <div class="row">
-                    @foreach($projectImages as $p)
+                    @foreach($projectType as $p)
                     <div class="col-sm-4 py-4 position-relative">
                         <a
                             href="{{ route('project.detail', ['id_project' => $project->id, 'id_project_type' => $p->id]) }}">
@@ -245,6 +174,51 @@
         var galleryItemsCount = $('.gallery-item').length;
 
         // Initialize Slick slider if there are 3 or more items
+        if (galleryItemsCount >= 3) {
+            $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [
+                    {
+                        breakpoint: 1024, // You can adjust this breakpoint as needed
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 768, // Mobile breakpoint
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        } else {
+            // Add 'side-by-side' class if there are fewer than 3 items
+            $('.multiple-items').addClass('side-by-side');
+        }
+
+        $('.gallery-item a').on('click', function(){
+            // Remove the 'active' class from all gallery items
+            $('.gallery-item').removeClass('active');
+
+            // Add the 'active' class to the clicked item's parent
+            $(this).parent().addClass('active');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Check the number of gallery items
+        var galleryItemsCount = $('.gallery-item2').length;
+
+        // Initialize Slick slider if there are 3 or more items
         @if($projectImages->count() >= 3)
             $('.multiple-items').slick({
                 infinite: true,
@@ -274,17 +248,9 @@
         $('.multiple-items').addClass('side-by-side');
         @endif
 
-        $('.gallery-item a').on('click', function() {
+        $('.gallery-item2 a').on('click', function() {
             // Remove the 'active' class from all gallery items
-            $('.gallery-item').removeClass('active');
-
-            // Add the 'active' class to the clicked item's parent
-            $(this).parent().addClass('active');
-        });
-
-        $('.gallery-item a').on('click', function(){
-            // Remove the 'active' class from all gallery items
-            $('.gallery-item').removeClass('active');
+            $('.gallery-item2').removeClass('active');
 
             // Add the 'active' class to the clicked item's parent
             $(this).parent().addClass('active');
