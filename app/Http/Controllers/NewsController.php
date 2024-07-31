@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Information;
 use App\Models\News;
 use App\Models\NewsImage;
+use App\Models\NewsInformation;
 
 class NewsController extends Controller
 {
     public function index()
     {
         $information = Information::first();
+        $news_information = NewsInformation::first();
         $news = News::paginate(6);
-        return view('news.index', compact('information', 'news'));
+        return view('news.index', compact('information', 'news', 'news_information'));
     }
 
     public function show($id)

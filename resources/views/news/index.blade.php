@@ -27,7 +27,7 @@
         padding: 10px;
     }
 </style>
-<div style="height: 50%; min-height: 40%; background-image: url('assets/img/News.jpg'); background-size: cover;">
+<div style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$news_information->header_image}}'); background-size: cover;">
 </div>
 
 <div style="background-color:#eeeeef">
