@@ -326,7 +326,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0);
+            background: rgba(0, 0, 0, 0.7);
             /* Adjust opacity as needed */
             z-index: 1;
         }
@@ -350,7 +350,7 @@
         }
 
         .header-video-1 {
-            height: 85%;
+            height: 100%;
             background-color: #eeeeef;
         }
     </style>
@@ -406,12 +406,15 @@ use Illuminate\Support\Str;
     <div class="header-video-1">
         <div class="video-container">
             <iframe id="youtube-video"
-                src="https://www.youtube.com/embed/{{ $information->header_video }}?autoplay=1&loop=1&controls=0&showinfo=0&rel=0&autohide=1&mute=1"
-                frameborder="0"
+                src="https://www.youtube.com/embed/{{ $information->header_video }}?autoplay=1&loop=1&playlist={{ $information->header_video }}&controls=1&showinfo=1&rel=0&autohide=1&mute=0"
+                frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
             </iframe>
             <div class="video-overlay"></div>
+            <div class="video-overlay-text">
+                <h2 class="mt-0 fw-bolder" style="font-size:3rem">WELCOME TO </br> JAVA RESIDENCE</h2>
+            </div>
         </div>
     </div>
 
