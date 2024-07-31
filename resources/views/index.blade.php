@@ -325,8 +325,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* height: 100%; */
-            background: rgba(0, 0, 0, 0.2);
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
             /* Adjust opacity as needed */
             z-index: 1;
         }
@@ -415,18 +415,18 @@ use Illuminate\Support\Str;
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
             </iframe> --}}
-            {{-- <div class="video-overlay"></div> --}}
+            <div class="video-overlay"></div>
             {{-- <div class="video-overlay-text">
                 <h2 class="mt-0 fw-bolder" style="font-size:3rem">WELCOME TO </br> JAVA RESIDENCE</h2>
             </div> --}}
         </div>
     </div>
 
-    <section class="page-section" data-aos="fade-up" data-aos-duration="1000" id="about"
+    <section class="page-section" id="about"
         style="background-color:#eeeeef">
-        <div class="container px-4 px-lg-5">
+        <div class="container px-4  px-lg-5">
             <div class="text-center mx-auto py-3">
-                <h2 class="mt-0 fw-bolder">About Java Residence</h2>
+                <h2 class="pt-5 fw-bolder">About Java Residence</h2>
                 <hr class="divider divider-black" />
             </div>
             <div class="row gx-4 gx-lg-5">
