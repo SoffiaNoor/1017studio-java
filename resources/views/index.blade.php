@@ -23,6 +23,10 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        .page-section {
+            padding: 4rem 0!important;
+        }
+
         .video-responsive {
             position: relative;
             padding-bottom: 56.25%;

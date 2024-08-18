@@ -39,6 +39,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
+        .page-section {
+            padding: 4rem 0 !important;
+        }
+
         .btn:hover {
             color: #f37321 !important;
         }
