@@ -546,7 +546,7 @@ use Illuminate\Support\Str;
         </a>
     </div>
 
-    <section class="page-section py-2" id="developed_by" style="background-color:#eeeeef;text-align: center;">
+    <section class="py-2" id="developed_by" style="background-color:#eeeeef;text-align: center;">
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-sm-4 py-2 centering-text">
