@@ -43,20 +43,26 @@
         opacity: .8;
         display: none;
     }
+
+    @media (max-width: 768px) {
+        .padding-for-phone {
+            margin-top: -5rem !important;
+        }
+    }
 </style>
 
 @section('content')
 
 <div
-    style="height: 50%; min-height: 40%; background-image: url({{env('APP_URL')}}{{$project->header_image}}); background-size: cover;">
+    style="height: 50%; min-height: 40%; background-image: url({{env('APP_URL')}}{{$project->header_image}}); background-size: cover;background-position: center;">
 </div>
 
 <div style="background-color:#eeeeef">
-    <div style="padding-top:5rem">
+    <div class="page-section">
         <div class="container">
             <div class="row px-2">
                 <div class="col-sm-12">
-                    <div class="text-center mx-auto py-3">
+                    <div class="text-center mx-auto">
                         <h2 class="mt-0 fw-bolder">{{$projectType->name}}</h2>
                         <hr class="divider divider-black" />
                     </div>
@@ -126,7 +132,7 @@
         </div>
     </div>
 
-    <div class="container pb-5 pt-5 px-0">
+    <div class="container pb-2 pt-2 px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="multiple-items">
@@ -219,7 +225,7 @@
 
     @if($projectTypeImages360->isNotEmpty())
     @if(count($projectTypeImages360) > 2)
-    <div class="container pb-5 pt-5 px-0">
+    <div class="container pb-2 pt-2 px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="grid grid-cols-6">
@@ -231,7 +237,7 @@
         </div>
     </div>
     @else
-    <div class="container pb-5 pt-5 px-0">
+    <div class="container pb-2 pt-2 px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="multiple-items2">

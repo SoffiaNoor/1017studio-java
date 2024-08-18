@@ -26,8 +26,15 @@
     .overlay-text {
         padding: 10px;
     }
+
+    @media (max-width: 768px) {
+        .padding-for-phone {
+            margin-top: -5rem !important;
+        }
+    }
 </style>
-<div style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$news_information->header_image}}'); background-size: cover;">
+
+<div style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$news_information->header_image}}'); background-size: cover;background-position: center;">
 </div>
 
 <div style="background-color:#eeeeef">
@@ -38,7 +45,7 @@
             <hr class="divider" style="background-color:#f37321;width:70%;max-width:10rem" />
             <div class="row gx-4 gx-lg-5 portfolio-items" style="place-content: center">
                 <div class="col-sm-12">
-                    <div class="row d-flex flex-wrap justify-content-center" style="text-align: -webkit-center;">
+                    <div class="row d-flex flex-wrap justify-content-center">
                         @foreach ($news as $a)
                         <div class="col-lg-4 col-sm-4 col-md-6 py-3 d-flex">
                             <a href="{{ route('news.show', $a->id) }}" class="d-flex w-100">
@@ -53,8 +60,8 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text" style="text-align: justify; hyphens: auto;">{{
-                                            Str::limit(strip_tags($a->description), 300) }}</p>
+                                        <div>
+                                            {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>

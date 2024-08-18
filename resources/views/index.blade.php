@@ -59,10 +59,11 @@
             }
 
             .header-video-1 {
-                height: auto !important;
-                background-color: #eeeeef;
-                margin-top: 90px;
-                /* padding-top:190px; */
+                position: relative;
+                width: 100%;
+                height: 100vh !important;
+                overflow: hidden;
+                will-change: transform;
             }
 
             .video-container {
@@ -185,18 +186,27 @@
             .dropdown-menu {
                 transform: none !important;
             }
-
-            .header-video-1 {
-                height: auto !important;
-                background-color: #eeeeef;
-                margin-top: 90px;
-                /* padding-top:190px; */
-            }
         }
 
         @media (min-width: 768px) {
             .centering-text {
                 text-align-last: center;
+            }
+
+            .header-video-1 {
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .video {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            .video-container {
+                height: 100%;
+                padding-top: 0;
             }
         }
 
@@ -315,9 +325,10 @@
             color: white;
             font-size: 24px;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             text-align: center;
             z-index: 1;
+            will-change: transform;
         }
 
         .video-overlay {
@@ -326,32 +337,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0);
-            /* Adjust opacity as needed */
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
             z-index: 1;
+            will-change: opacity;
         }
 
-        .video-overlay2 {
+        .social-icon {
+            width: auto;
+            height: 30px;
+        }
+
+        .header-video-1 {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            will-change: transform;
+        }
+
+        .video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            /* Adjust opacity as needed */
-            z-index: 1;
-        }
-
-        .social-icon {
-            width: auto;
-            /* Set the desired width */
-            height: 30px;
-            /* Set the desired height */
-        }
-
-        .header-video-1 {
-            height: 100%;
-            background-color: #eeeeef;
+            object-fit: cover;
+            transform: translateZ(0);
         }
     </style>
 </head>
@@ -372,10 +384,10 @@ use Illuminate\Support\Str;
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-4 pb-3" id="mainNav" style="background-color:#f37321">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-3 pb-3" id="mainNav" style="background-color:#f37321">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="/"><img src="{{env('APP_URL')}}{{$information->logo_header}}"
-                    style="max-width:120px;width:100px;" /></a>
+                    style="max-width:100px;width:80px;" /></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 style="border: none" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -405,46 +417,46 @@ use Illuminate\Support\Str;
 
     <div class="header-video-1">
         <div class="video-container">
-            <iframe id="youtube-video" width="100%" height="100%" id="header_video_display" type="hidden"
-                                                src="https://www.youtube.com/embed/{{ $information->header_video }}?autoplay=1&loop=1&mute=1&playlist={{ $information->header_video }}"
-                                                frameborder="0" allow="autoplay; loop; encrypted-media"
-                                                allowfullscreen></iframe>
-            {{-- <iframe id="youtube-video"
-                src="https://www.youtube.com/embed/{{ $information->header_video }}?autoplay=1&loop=1&playlist={{ $information->header_video }}&controls=1&showinfo=1&rel=0&autohide=1&mute=0"
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe> --}}
             <div class="video-overlay"></div>
-            {{-- <div class="video-overlay-text">
-                <h2 class="mt-0 fw-bolder" style="font-size:3rem">WELCOME TO </br> JAVA RESIDENCE</h2>
-            </div> --}}
+            <video id="header_video_display" class="video" autoplay loop muted playsinline>
+                <source src="{{env('APP_URL')}}{{$information->header_video}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-overlay-text">
+                <h2 class="fw-bold" style="font-size:2.5rem">Welcome To</h2>
+                <h2 class="fw-bolder" style="font-size:3rem;letter-spacing: 2px;">JAVA RESIDENCE</h2>
+            </div>
         </div>
     </div>
 
-    <section class="page-section" id="about"
-        style="background-color:#eeeeef">
+    <section class="page-section" id="about" style="background-color:#eeeeef">
         <div class="container px-4  px-lg-5">
             <div class="text-center mx-auto py-3">
                 <h2 class="pt-5 fw-bolder">About Java Residence</h2>
                 <hr class="divider divider-black" />
             </div>
             <div class="row gx-4 gx-lg-5">
-                <div class="col-lg-6 py-5 py-md-0">
-                    <p class="mb-4" style="text-align: justify; hyphens: auto;">{!!
-                        substr($information->description,0,700).'...'!!}</p>
-                    <a href="/about" class="btn btn-bla text-white mt-2 mb-4"
-                        style="background-color:#f37321;border-radius:0;font-size:15pt">More
-                        Info</a>
+                <div class="col-sm-6 py-2 py-md-0">
+                    <div>
+                        <p class="mb-4" style="text-align: justify; hyphens: auto;">
+                            {!! substr(strip_tags($information->description), 0, 700) . '...' !!}
+                        </p>
+                        <a href="/about" class="btn btn-bla text-white mt-2 mb-4"
+                            style="background-color:#f37321; border-radius:0; font-size:15pt;">
+                            More Info
+                        </a>
+                    </div>
                 </div>
-                <div class="col-lg-6 justify-content-center">
-                    <div id="video_container" class="video-responsive">
+                <div class="col-sm-6 py-2 py-md-0">
+                    <div class="justify-content-center">
                         @if($information->video)
-                        {!! $information->video !!}
+                        <div id="video_container" class="video-responsive">
+                            {!! $information->video !!}
+                        </div>
                         @else
                         <img id="video_display" class="object-contain items-center"
                             style="width:100%;height:auto;object-fit:cover"
-                            src="{{env('APP_URL')}}{{$information->image}}">
+                            src="{{ env('APP_URL') . $information->image }}" />
                         @endif
                     </div>
                 </div>
@@ -459,24 +471,23 @@ use Illuminate\Support\Str;
             <div class="row gx-4 gx-lg-5">
                 @foreach ($facility as $a)
                 <div class="col-lg-4 col-md-6 text-center">
-                    <div class="mt-5 d-flex">
-                        <div class="me-3">
+                    <div class="mt-3 d-flex">
+                        <div class="me-1">
                             <img src="{{env('APP_URL')}}{{$a->image}}" style="width:110px;max-width:140px" />
                         </div>
                         <div style="align-content: center;">
                             <h3 class="h5 fw-bold mb-2" style="color:white">{{$a->title}}</h3>
                         </div>
                     </div>
-                    <p class="mb-4 text-white" style="text-align: center!important">{{$a->description}}</p>
+                    <div class="mb-4 text-white" style="text-align: center!important">{!! $a->description !!}</div>
                 </div>
                 @endforeach
             </div>
         </div>
     </section>
 
-    <section class="page-section" id="portfolio" style="background-color:#eeeeef" data-aos="fade-up"
-        data-aos-duration="1000">
-        <div class="container px-4 px-lg-5">
+    <section class="page-section" style="padding-bottom:2rem!important;background-color:#eeeeef" id="news">
+        <div class="container px-4 px-lg-5" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="text-center mt-0 fw-bolder" style="color:#474443">News & Event</h2>
             <hr class="divider" style="background-color:#f37321;width:70%;max-width:10rem" />
             <div class="row gx-4 gx-lg-5 portfolio-items" style="place-content: center">
@@ -496,9 +507,8 @@ use Illuminate\Support\Str;
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text" style="text-align: justify; hyphens: auto;">
-                                            {{ Str::limit(strip_tags($a->description), 300) }}
-                                        </p>
+                                        <div>
+                                            {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>
@@ -523,7 +533,7 @@ use Illuminate\Support\Str;
     </style>
 
 
-    <div class="position-fixed bottom-0 end-0 mb-3 me-3" style="z-index: 999" data-aos="fade-up"
+    <div class="position-fixed bottom-0 end-0 mb-4 me-4" style="z-index: 999" data-aos="fade-up"
         data-aos-duration="1000">
         <a title="Chat Whatsapp" href="{{$information->link_wa}}" target="_blank"
             class="d-inline-block rounded-full transition-all transform hover:scale-110 hover:rotate-12">
@@ -532,11 +542,11 @@ use Illuminate\Support\Str;
         </a>
     </div>
 
-    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef;text-align: center;">
+    <section class="page-section py-2" id="developed_by" style="background-color:#eeeeef;text-align: center;">
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-sm-4 py-2 centering-text">
-                    <h5 class="h5 fw-bold mb-2">Developed & Constructed by :</h5>
+                    <h5 class="mb-2" style="font-weight: 600;font-size: 13pt">Developed & Constructed by :</h5>
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
                     <img src="{{asset('assets/img/Mup.png')}}" style="width:80%" />
@@ -574,7 +584,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0">{{
+                                            <td class="text-white py-0" style="color:white!important">{{
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
                                             </td>
                                         </tr>
@@ -583,7 +593,7 @@ use Illuminate\Support\Str;
                                 <table class="text-white pb-1">
                                     <thead>
                                         <tr>
-                                            <th>Follow us:</th>
+                                            <th style="font-weight: 500!important">Follow us:</th>
                                             @if(!empty($information->instagram))
                                             <th>
                                                 <a target="_blank" href="{{$information->instagram}}" class="ml-2">
@@ -750,7 +760,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0">{{
+                                            <td class="text-white py-0" style="color:white!important">{{
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
                                             </td>
                                         </tr>
@@ -759,7 +769,7 @@ use Illuminate\Support\Str;
                                 <table class="text-white pb-1">
                                     <thead>
                                         <tr>
-                                            <th>Follow us:</th>
+                                            <th style="font-weight: 500!important">Follow us:</th>
                                             @if(!empty($information->instagram))
                                             <th>
                                                 <a target="_blank" href="{{$information->instagram}}" class="ml-2">

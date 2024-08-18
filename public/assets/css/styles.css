@@ -12628,7 +12628,7 @@ body {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 4rem 0;
 }
 
 .text-white-75 {
@@ -12975,7 +12975,7 @@ a {
 }
 
 p {
-  text-align: justify !important;
+  text-align: justify;
 }
 
 .unique-button {

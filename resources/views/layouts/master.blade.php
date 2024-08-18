@@ -211,10 +211,10 @@ use Illuminate\Support\Str;
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-4 pb-3" id="mainNav" style="background-color:#f37321">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top pt-3 pb-3" id="mainNav" style="background-color:#f37321">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="/"><img src="{{env('APP_URL')}}{{$information->logo_header}}"
-                    style="max-width:120px;width:100px;" /></a>
+                    style="max-width:100px;width:80px;" /></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                 style="border: none" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -251,11 +251,11 @@ use Illuminate\Support\Str;
     </div>
     @yield('content')
 
-    <section class="page-section pb-3 pt-3" id="developed_by" style="background-color:#eeeeef;text-align: center;">
+    <section class="page-section py-2" id="developed_by" style="background-color:#eeeeef;text-align: center;">
         <div class="container">
             <div class="row" style="align-items: center;">
                 <div class="col-sm-4 py-2 centering-text">
-                    <h5 class="h5 fw-bold mb-2">Developed & Constructed by :</h5>
+                    <h5 class="mb-2" style="font-weight: 600;font-size: 13pt">Developed & Constructed by :</h5>
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
                     <img src="{{asset('assets/img/Mup.png')}}" style="width:80%" />
@@ -293,7 +293,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0">{{
+                                            <td class="text-white py-0" style="color:white!important">{{
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
                                             </td>
                                         </tr>
@@ -302,7 +302,7 @@ use Illuminate\Support\Str;
                                 <table class="text-white pb-1">
                                     <thead>
                                         <tr>
-                                            <th>Follow us:</th>
+                                            <th style="font-weight: 500!important">Follow us:</th>
                                             @if(!empty($information->instagram))
                                             <th>
                                                 <a target="_blank" href="{{$information->instagram}}" class="ml-2">
@@ -467,7 +467,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0">{{
+                                            <td class="text-white py-0" style="color:white!important">{{
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
                                             </td>
                                         </tr>
@@ -476,7 +476,7 @@ use Illuminate\Support\Str;
                                 <table class="text-white pb-1">
                                     <thead>
                                         <tr>
-                                            <th>Follow us:</th>
+                                            <th style="font-weight: 500!important">Follow us:</th>
                                             @if(!empty($information->instagram))
                                             <th>
                                                 <a target="_blank" href="{{$information->instagram}}" class="ml-2">

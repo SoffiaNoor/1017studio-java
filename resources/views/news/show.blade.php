@@ -63,7 +63,7 @@
 </style>
 
 <div style="background-color:#eeeeef">
-    <div class="pb-4" style="padding-top:10rem">
+    <div class="pb-4" style="padding-top:8rem">
         <div class="container">
             <div class="col-sm-12">
                 @if(!empty ($news->link_video))
@@ -77,9 +77,9 @@
                 </div>
                 @endif
             </div>
-            <div class="col-sm-12 pt-5">
-                <div class="text-center mx-auto py-3">
-                    <h2 class="mt-0 fw-bolder">{{$news->title}}</h2>
+            <div class="col-sm-12 pt-3">
+                <div class="text-center mx-auto py-2">
+                    <h3 class="mt-0 fw-bolder">{{$news->title}}</h3>
                     <hr class="divider divider-black" />
                 </div>
                 <p>
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <div class="container pb-5 pt-5 px-0">
+    <div class="container px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="multiple-items">
@@ -126,7 +126,7 @@
         }
     </style>
 
-    <section class="page-section" id="portfolio" style="background-color:#eeeeef">
+    <section id="portfolio" style="background-color:#eeeeef;padding: 2rem 0;">
         <div class="container px-4 px-lg-5">
             <h2 class="text-center mt-0 fw-bolder" style="color:#474443">News & Event</h2>
             <hr class="divider" style="background-color:#f37321;width:70%;max-width:10rem" />
@@ -147,7 +147,8 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <p class="card-text">{{ Str::limit(strip_tags($a->description), 200) }}</p>
+                                        <div>
+                                            {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
                                         <p class="card-text">{{ $a->created_at->format('Y-m-d') }}</p>

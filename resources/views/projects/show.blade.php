@@ -37,18 +37,23 @@
         opacity: .8;
         display: none;
     }
+    @media (max-width: 768px) {
+        .padding-for-phone {
+            margin-top: -5rem !important;
+        }
+    }
 </style>
 
 <div
-    style="height: 50%; min-height: 40%; background-image: url({{env('APP_URL')}}{{$project->header_image}}); background-size: cover;">
+    style="height: 50%; min-height: 40%; background-image: url({{env('APP_URL')}}{{$project->header_image}}); background-size: cover;background-position: center;">
 </div>
 
 <div style="background-color:#eeeeef">
-    <div style="padding-top:5rem">
+    <div class="page-section">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="text-center mx-auto py-3">
+                    <div class="text-center mx-auto">
                         <h2 class="mt-0 fw-bolder">{{$project->title}}</h2>
                         <hr class="divider divider-black" />
                     </div>
@@ -63,7 +68,9 @@
                             </div>
                         </div>
                         <div class="col-lg-7 py-5 py-md-0">
-                            <p class="mb-4" style="text-align: justify">{{$project->description}}</p>
+                            <div class="mb-2">
+                                {!! $project->description !!}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,7 +78,7 @@
         </div>
     </div>
 
-    <div class="container pb-5 pt-5 px-0">
+    <div class="container pb-2 pt-2 px-0">
         <div class="col-sm-12">
             <div class="row">
                 <div class="multiple-items">
@@ -116,7 +123,7 @@
                     <hr class="divider divider-black" />
                 </div>
                 <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-6 justify-content-center">
+                    <div class="col-lg-6 justify-content-center py-2">
                         <div class="gallery-item">
                             <a href="{{env('APP_URL')}}{{$project->siteplan}}" data-lightbox="gallery">
                                 <img class="img-fluid" style="object-fit: cover;height:100%!important"
@@ -124,7 +131,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-6 justify-content-center">
+                    <div class="col-lg-6 justify-content-center py-2">
                         {!! str_replace('<iframe', '<iframe class="custom-map"' , $project->location) !!}
                     </div>
                 </div>
@@ -148,7 +155,7 @@
                                 style="height:30rem!important;width:100%;object-fit:cover;background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{env('APP_URL')}}{{$p->image}}'); background-size: cover;align-content:end">
                                 <div>
                                     <h4 class="mt-0 fw-bolder text-white text-center">{{$p->name}}</h4>
-                                    <p class="text-white text-center">{{$p->small_description}}</p>
+                                    <p class="text-white text-center mx-2">{{$p->small_description}}</p>
                                 </div>
                             </div>
                         </a>
