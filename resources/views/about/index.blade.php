@@ -8,6 +8,15 @@
 @section('content')
 
 <style>
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.mfp-zoom-out-cur {
+        overflow: hidden;
+        -webkit-overflow-scrolling: auto;
+    }
+
     .video-responsive {
         position: relative;
         padding-bottom: 56.25%;
@@ -95,40 +104,50 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function ($) {
-        // Initialize Magnific Popup
-        $('.gallerys').magnificPopup({
-            type: 'image',
-            delegate: 'a',
-            gallery: {
-                enabled: true
+    // Initialize Magnific Popup
+    $('.gallerys').magnificPopup({
+        type: 'image',
+        delegate: 'a',
+        gallery: {
+            enabled: true
+        },
+        callbacks: {
+            open: function() {
+                // When the popup is opened, apply the styles
+                $('body').addClass('mfp-zoom-out-cur');
+            },
+            close: function() {
+                // When the popup is closed, remove the styles
+                $('body').removeClass('mfp-zoom-out-cur');
             }
-        });
-
-        // Initialize Slick Carousel
-        $('.multiple-items').slick({
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            arrows: false,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [
-                {
-                    breakpoint: 1024, // You can adjust this breakpoint as needed
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 768, // Mobile breakpoint
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
+        }
     });
+
+    // Initialize Slick Carousel
+    $('.multiple-items').slick({
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 768, // Mobile breakpoint
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+});
 </script>
 @endsection
