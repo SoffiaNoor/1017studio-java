@@ -39,8 +39,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
+        .white-phone {
+            color: white!important;
+        }
         .page-section {
-            padding: 4rem 0 !important;
+            padding: 2rem 0 !important;
         }
 
         .btn:hover {
@@ -273,7 +276,7 @@ use Illuminate\Support\Str;
 
     @if(!empty($information->footer_image))
     <footer
-        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;"
+        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;background-position:center"
         id="contactForm">
         <div class="footer-overlay"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1;">
@@ -297,8 +300,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{{
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            <td class="text-white py-0" style="color:white!important">{!!
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -471,8 +474,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{{
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            <td class="text-white py-0" style="color:white!important">{!!
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
                                     </tbody>

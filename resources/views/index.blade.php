@@ -23,8 +23,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        .white-phone {
+            color: white!important;
+        }
+
         .page-section {
-            padding: 4rem 0!important;
+            padding: 2rem 0 !important;
         }
 
         .video-responsive {
@@ -93,6 +97,10 @@
                 width: 100%;
                 height: 100% !important;
                 border: 0;
+            }
+
+            .video-overlay-text {
+                font-size: 24pt!important;
             }
         }
 
@@ -327,12 +335,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 24px;
+            font-size: 30pt;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
             text-align: center;
             z-index: 1;
             will-change: transform;
+            width: 80%;
         }
 
         .video-overlay {
@@ -341,7 +350,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             pointer-events: none;
             z-index: 1;
             will-change: opacity;
@@ -427,8 +436,7 @@ use Illuminate\Support\Str;
                 Your browser does not support the video tag.
             </video>
             <div class="video-overlay-text">
-                <h2 class="fw-bold" style="font-size:2.5rem">Welcome To</h2>
-                <h2 class="fw-bolder" style="font-size:3rem;letter-spacing: 2px;">JAVA RESIDENCE</h2>
+                <div>{!! $information->header_text !!}</div>
             </div>
         </div>
     </div>
@@ -436,7 +444,7 @@ use Illuminate\Support\Str;
     <section class="page-section" id="about" style="background-color:#eeeeef">
         <div class="container px-4  px-lg-5">
             <div class="text-center mx-auto py-3">
-                <h2 class="pt-5 fw-bolder">About Java Residence</h2>
+                <h2 class="fw-bolder">About Java Residence</h2>
                 <hr class="divider divider-black" />
             </div>
             <div class="row gx-4 gx-lg-5">
@@ -511,7 +519,7 @@ use Illuminate\Support\Str;
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <div>
+                                        <div style="height: 220px;">
                                             {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
@@ -564,7 +572,7 @@ use Illuminate\Support\Str;
 
     @if(!empty($information->footer_image))
     <footer
-        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;"
+        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;background-position:center"
         id="contactForm">
         <div class="footer-overlay"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1;">
@@ -588,8 +596,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{{
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            <td class="text-white py-0" style="color:white!important">{!! 
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -764,8 +772,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{{
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}
+                                            <td class="text-white py-0" style="color:white!important">{!!
+                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
                                     </tbody>

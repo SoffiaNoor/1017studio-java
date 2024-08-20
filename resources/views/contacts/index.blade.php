@@ -28,7 +28,7 @@
 <div style="background-color:#eeeeef">
     <div class="page-section">
         <div class="container">
-            <div class="row py-3 px-4">
+            <div class="row px-4">
                 <div class="col-sm-12">
                     <div class="text-center mx-auto">
                         <h2 class="mt-0 fw-bolder">{{$contact_information->title}}</h2>

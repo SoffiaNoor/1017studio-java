@@ -12,6 +12,6 @@ class PhoneFormatter
         // Add spaces (e.g., 0812 2444 2111)
         $formattedPhone = preg_replace('/(\d{4})(\d{4})(\d{4})/', '$1 $2 $3', $phone);
 
-        return $formattedPhone;
+        return '<span class="white-phone">' . $formattedPhone . '</span>';
     }
 }
