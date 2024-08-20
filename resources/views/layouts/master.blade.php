@@ -8,48 +8,36 @@
     <meta name="author" content="" />
     <title>Java Residence</title>
     <link rel="icon" type="image/x-icon" href="{{env('APP_URL')}}{{$information->logo_favicon}}" />
+
+    <!-- Icons for Footer -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font used for this Java Residence -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <!--Font Awesome / Icon -->
+    <!-- Font Awesome / Icon -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         type='text/css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-    <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet" />
+    <!-- CSS Style used for this Java Residence -->
+    <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet">
+    <!-- Library Animation used for this web -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Magnific Popup for Gallery -->
+    <link rel="stylesheet" href="{{asset('assets/magnific-popup/magnific-popup.css')}}">
+    <!-- Slick for Gallery -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/slick/slick.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- ElevateZoom -->
+    <!-- ElevateZoom-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
-
-    <!-- Lightbox2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <!-- Include jQuery (ensure it's included before Slick) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
-        .white-phone {
-            color: white!important;
-        }
-        .page-section {
-            padding: 2rem 0 !important;
-        }
-
-        .btn:hover {
-            color: #f37321 !important;
-        }
-
         .navbar::before {
             content: '';
             position: absolute;
@@ -57,29 +45,8 @@
             left: 0;
             width: 100%;
             height: 20px;
-            /* Adjust the height of the red padding */
             background-color: #f37321;
-            /* Set the color of the padding */
             z-index: -1;
-            /* Ensure the pseudo-element is behind the navbar content */
-        }
-
-        .flag-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/1280px-Flag_of_Indonesia.svg.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .flag-icon2 {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png');
-            background-size: cover;
-            background-position: center;
         }
 
         .dropdown-menu {
@@ -134,70 +101,11 @@
             }
         }
 
-        .overlayer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loader {
-            text-align: center;
-            display: block;
-        }
-
-        .logoloader {
-            width: 100px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        #content {
-            display: none;
-        }
-
-        #btn-back-to-top {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
-
-        .ratio-16x9 {
-            background: #e6e6e6 !important;
-            color: black !important;
-        }
-
         svg {
             overflow: hidden;
             vertical-align: middle;
             color: #111111 !important;
             opacity: 0 !important;
-        }
-
-        .social-icon {
-            width: auto;
-            /* Set the desired width */
-            height: 30px;
-            /* Set the desired height */
         }
     </style>
 </head>
@@ -629,133 +537,125 @@ use Illuminate\Support\Str;
     </footer>
     @endif
 
-    @yield('jquery')
-
+    <script src="{{asset('assets/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/slick/slick.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </script>
-    <!-- Lightbox2 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <!-- elevateZoom JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+
+    @yield('jquery')
+
     <script>
         AOS.init();
 
-var toTopButton = document.getElementById("to-top-button");
+        var toTopButton = document.getElementById("to-top-button");
 
-window.onscroll = function () {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        toTopButton.classList.remove("d-none");
-    } else {
-        toTopButton.classList.add("d-none");
-    }
-}
-
-function goToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    var myCarousel = document.querySelector('#carouselExampleSlidesOnly')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 3000, // Adjust the interval as needed (in milliseconds)
-        wrap: true
-    })
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    let visibleItems = 6;
-    let totalDisplayedItems = 0;
-
-    // Initially hide all items beyond visibleItems
-    portfolioItems.forEach((item, index) => {
-        if (index >= visibleItems) {
-            item.style.display = 'none';
-        } else {
-            totalDisplayedItems++;
-        }
-    });
-         // Initially hide the Load More button if there are 6 or fewer portfolio items
-         if (portfolioItems.length <= 6) {
-            loadMoreBtn.style.display = 'none';
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                toTopButton.classList.remove("d-none");
+            } else {
+                toTopButton.classList.add("d-none");
+            }
         }
 
-    loadMoreBtn.addEventListener('click', function () {
-        let newlyDisplayedItems = 0;
-
-        // Show next batch of items or remaining items if less than a full batch
-        for (let i = totalDisplayedItems; i < portfolioItems.length && newlyDisplayedItems < 6; i++) {
-            portfolioItems[i].style.display = 'block';
-            totalDisplayedItems++;
-            newlyDisplayedItems++;
+        function goToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Hide Load More button if all items are displayed
-        if (totalDisplayedItems >= portfolioItems.length) {
-            loadMoreBtn.style.display = 'none';
-        }
-    });
-});
+        document.addEventListener("DOMContentLoaded", function () {
+            var myCarousel = document.querySelector('#carouselExampleSlidesOnly')
+            var carousel = new bootstrap.Carousel(myCarousel, {
+                interval: 3000, // Adjust the interval as needed (in milliseconds)
+                wrap: true
+            })
+        });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const checkbox = document.getElementById('flexCheckChecked');
-    const submitButton = document.getElementById('submitButton');
+        document.addEventListener('DOMContentLoaded', function () {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let visibleItems = 6;
+            let totalDisplayedItems = 0;
 
-    checkbox.addEventListener('change', function () {
-        if (checkbox.checked) {
-            submitButton.disabled = false;
-        } else {
-            submitButton.disabled = true;
-        }
-    });
-});
+            // Initially hide all items beyond visibleItems
+            portfolioItems.forEach((item, index) => {
+                if (index >= visibleItems) {
+                    item.style.display = 'none';
+                } else {
+                    totalDisplayedItems++;
+                }
+            });
+                // Initially hide the Load More button if there are 6 or fewer portfolio items
+                if (portfolioItems.length <= 6) {
+                    loadMoreBtn.style.display = 'none';
+                }
+
+            loadMoreBtn.addEventListener('click', function () {
+                let newlyDisplayedItems = 0;
+
+                // Show next batch of items or remaining items if less than a full batch
+                for (let i = totalDisplayedItems; i < portfolioItems.length && newlyDisplayedItems < 6; i++) {
+                    portfolioItems[i].style.display = 'block';
+                    totalDisplayedItems++;
+                    newlyDisplayedItems++;
+                }
+
+                // Hide Load More button if all items are displayed
+                if (totalDisplayedItems >= portfolioItems.length) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkbox = document.getElementById('flexCheckChecked');
+            const submitButton = document.getElementById('submitButton');
+
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            });
+        });
     </script>
 
     <script>
         let mybutton = document.getElementById("btn-back-to-top");
 
-window.onscroll = function() {
-    scrollFunction();
-};
+        window.onscroll = function() {
+            scrollFunction();
+        };
 
-function scrollFunction() {
-    if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
-    ) {
-        mybutton.style.display = "block";
-    } else {
-        mybutton.style.display = "none";
-    }
-}
+        function scrollFunction() {
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
 
-mybutton.addEventListener("click", backToTop);
+        mybutton.addEventListener("click", backToTop);
 
-function backToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-}
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
 
-setTimeout(function() {
-    document.getElementById('overlayer').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-    mybutton.style.display = "block"; // Show the back to top button when content is loaded
-}, 3000);
+        setTimeout(function() {
+            document.getElementById('overlayer').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            mybutton.style.display = "block"; // Show the back to top button when content is loaded
+        }, 3000);
     </script>
 </body>
 
