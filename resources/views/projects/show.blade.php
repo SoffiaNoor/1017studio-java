@@ -39,7 +39,7 @@
         <div class="col-sm-12">
             <div class="row no-gutters gallerys p-0 {{ count($projectImages) > 3 ? 'multiple-items' : '' }}">
                 @foreach($projectImages as $p)
-                <div class="{{ count($projectImages) < 3 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($projectImages) > 3 ? 'slick-slide' : '' }}" style="height:auto!important;">
+                <div class="{{ count($projectImages) < 4 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($projectImages) > 3 ? 'slick-slide' : '' }}" style="height:auto!important;">
                     <a href="{{env('APP_URL')}}{{$p->image}}">
                         <img src="{{env('APP_URL')}}{{$p->image}}"
                             style="height:20rem!important;width:100%;object-fit:cover" />
