@@ -45,6 +45,17 @@
         width: 100%;
         height: 100%;
     }
+
+    .height-for-news {
+        height: 250px;
+    }
+
+    /* Target iPad Pro portrait and landscape modes */
+    @media (min-width: 900px) and (max-width: 1200px) {
+        .height-for-news {
+            height: 320px !important;
+        }
+    }
 </style>
 
 <div style="background-color:#eeeeef">
@@ -78,7 +89,8 @@
         <div class="col-sm-12">
             <div class="row no-gutters gallerys p-0 {{ count($newsImages) > 3 ? 'multiple-items' : '' }}">
                 @foreach($newsImages as $p)
-                <div class="{{ count($newsImages) < 4 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($newsImages) > 3 ? 'slick-slide' : '' }}" style="height:auto!important;">
+                <div class="{{ count($newsImages) < 4 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($newsImages) > 3 ? 'slick-slide' : '' }}"
+                    style="height:auto!important;">
                     <a href="{{env('APP_URL')}}{{$p->image}}">
                         <img src="{{env('APP_URL')}}{{$p->image}}"
                             style="height:20rem!important;width:100%;object-fit:cover" />
@@ -110,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <div style="height: 250px;">
+                                        <div class="height-for-news">
                                             {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />

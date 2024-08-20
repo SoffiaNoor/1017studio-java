@@ -32,9 +32,21 @@
             margin-top: -5rem !important;
         }
     }
+
+    .height-for-news {
+        height: 250px;
+    }
+
+    /* Target iPad Pro portrait and landscape modes */
+    @media (min-width: 900px) and (max-width: 1200px) {
+        .height-for-news {
+            height: 320px !important;
+        }
+    }
 </style>
 
-<div style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$news_information->header_image}}'); background-size: cover;background-position: center;">
+<div
+    style="height: 50%; min-height: 40%; background-image: url('{{env('APP_URL')}}{{$news_information->header_image}}'); background-size: cover;background-position: center;">
 </div>
 
 <div style="background-color:#eeeeef">
@@ -60,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <div style="height: 250px;">
+                                        <div class="height-for-news">
                                             {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />

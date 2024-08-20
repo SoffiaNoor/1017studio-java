@@ -24,7 +24,7 @@
 
     <style>
         .white-phone {
-            color: white!important;
+            color: white !important;
         }
 
         .page-section {
@@ -100,7 +100,7 @@
             }
 
             .video-overlay-text {
-                font-size: 24pt!important;
+                font-size: 24pt !important;
             }
         }
 
@@ -378,6 +378,17 @@
             object-fit: cover;
             transform: translateZ(0);
         }
+
+        .height-for-news {
+            height: 250px;
+        }
+
+        /* Target iPad Pro portrait and landscape modes */
+        @media (min-width: 900px) and (max-width: 1200px) {
+            .height-for-news {
+                height: 320px !important;
+            }
+        }
     </style>
 </head>
 
@@ -519,7 +530,7 @@ use Illuminate\Support\Str;
                                         </div>
                                     </div>
                                     <div class="card-body text-white" style="background-color:#f37321;">
-                                        <div style="height: 250px;">
+                                        <div class="height-for-news">
                                             {!! Str::limit($a->description, 300) !!}</div>
                                         <hr class="divider"
                                             style="background-color:#ffffff;width:100%;max-width: 100%!important;height: 0.1rem!important;" />
@@ -596,7 +607,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{!! 
+                                            <td class="text-white py-0" style="color:white!important">{!!
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
