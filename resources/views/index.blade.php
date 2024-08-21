@@ -390,7 +390,17 @@
             }
 
             .video-overlay-text {
-                font-size:32px;
+                font-size: 32px;
+            }
+        }
+
+        .enforce-white {
+            color: white !important;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .enforce-white {
+                color: white !important;
             }
         }
     </style>
@@ -400,7 +410,7 @@
 use Illuminate\Support\Str;
 @endphp
 
-<body id="page-top" style="font-family: Montserrat">
+<body id="page-top" style="font-family: Montserrat;">
     <div id="overlayer" class="overlayer">
         <div class="loader" id="loader">
             <img src="{{env('APP_URL')}}{{$information->logo_header}}" alt="Logo" class="logoloader">
@@ -611,7 +621,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{!!
+                                            <td class="text-white py-0 enforce-white">{!!
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
@@ -787,7 +797,7 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{!!
+                                            <td class="text-white py-0 enforce-white">{!!
                                                 \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
                                             </td>
                                         </tr>
