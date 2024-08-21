@@ -126,6 +126,19 @@
             /* Prevents text stroke from affecting color */
         }
     </style>
+    <style>
+        /* Default behavior for non-mobile devices */
+        #contactForm {
+            background-attachment: fixed;
+        }
+    
+        /* Override for mobile devices */
+        @media (max-width: 768px) {
+            #contactForm {
+                background-attachment: scroll;
+            }
+        }
+    </style>
 </head>
 
 @php
@@ -202,7 +215,7 @@ use Illuminate\Support\Str;
 
     @if(!empty($information->footer_image))
     <footer
-        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; background-attachment: fixed; position: relative;background-position:center"
+        style="background-image: url({{env('APP_URL')}}{{$information->footer_image}}); background-size: cover; position: relative;background-position:center"
         id="contactForm">
         <div class="footer-overlay"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1;">
