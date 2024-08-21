@@ -403,6 +403,14 @@
                 color: white !important;
             }
         }
+
+        .text-white {
+            color: #fff !important;
+            -webkit-text-fill-color: #fff;
+            /* Ensures white text in Safari */
+            -webkit-text-stroke-width: 0;
+            /* Prevents text stroke from affecting color */
+        }
     </style>
 </head>
 
@@ -530,7 +538,7 @@ use Illuminate\Support\Str;
             <div class="row gx-4 gx-lg-5 portfolio-items" style="place-content: center">
                 <div class="col-sm-12">
                     <div class="row d-flex flex-wrap justify-content-center" style="text-align: -webkit-center;">
-                        @foreach ($news as $a)
+                        @foreach ($latestNews as $a)
                         <div class="col-lg-4 col-sm-4 col-md-6 py-3 d-flex">
                             <a href="{{ route('news.show', $a->id) }}" class="d-flex w-100">
                                 <div class="card" style="width: 100%; position: relative;">
@@ -621,8 +629,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0 enforce-white">{!!
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
+                                            <td class="text-white py-0 enforce-white" id="phone-number-container"
+                                                data-phone="{{\App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -797,8 +805,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0 enforce-white">{!!
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
+                                            <td class="text-white py-0 enforce-white" id="phone-number-container"
+                                                data-phone="{{\App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -965,6 +973,14 @@ use Illuminate\Support\Str;
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const phoneNumberContainer = document.getElementById('phone-number-container');
+            const formattedPhoneNumber = phoneNumberContainer.getAttribute('data-phone');
+            phoneNumberContainer.innerHTML = formattedPhoneNumber;
+            phoneNumberContainer.style.color = "#fff";  // Ensure white color is applied
+        });
+    </script>
     <script>
         AOS.init();
 
