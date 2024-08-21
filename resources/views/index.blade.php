@@ -335,7 +335,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 30pt;
+            font-size: calc(32* 100vw / 1600);
             font-weight: bold;
             text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
             text-align: center;
@@ -387,6 +387,10 @@
         @media (min-width: 900px) and (max-width: 1200px) {
             .height-for-news {
                 height: 320px !important;
+            }
+
+            .video-overlay-text {
+                font-size:32px;
             }
         }
     </style>
