@@ -107,6 +107,24 @@
             color: #111111 !important;
             opacity: 0 !important;
         }
+
+        .enforce-white {
+            color: white !important;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .enforce-white {
+                color: white !important;
+            }
+        }
+
+        .text-white {
+            color: #fff !important;
+            -webkit-text-fill-color: #fff;
+            /* Ensures white text in Safari */
+            -webkit-text-stroke-width: 0;
+            /* Prevents text stroke from affecting color */
+        }
     </style>
 </head>
 
@@ -208,8 +226,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{!!
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
+                                            <td class="text-white py-0 enforce-white" id="phone-number-container"
+                                                data-phone="{{\App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -382,8 +400,8 @@ use Illuminate\Support\Str;
                                             <td class="py-0" style="align-content: center;">
                                                 <i class="bi bi-telephone-fill text-white"></i>
                                             </td>
-                                            <td class="text-white py-0" style="color:white!important">{!!
-                                                \App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) !!}
+                                            <td class="text-white py-0 enforce-white" id="phone-number-container"
+                                                data-phone="{{\App\Helpers\PhoneFormatter::formatPhoneNumber($information->phone) }}">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -550,7 +568,14 @@ use Illuminate\Support\Str;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
 
     @yield('jquery')
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const phoneNumberContainer = document.getElementById('phone-number-container');
+            const formattedPhoneNumber = phoneNumberContainer.getAttribute('data-phone');
+            phoneNumberContainer.innerHTML = formattedPhoneNumber;
+            phoneNumberContainer.style.color = "#fff";  // Ensure white color is applied
+        });
+    </script>
     <script>
         AOS.init();
 
