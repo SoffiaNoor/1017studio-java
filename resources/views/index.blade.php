@@ -337,7 +337,7 @@
             color: white;
             font-size: calc(32* 100vw / 1600);
             font-weight: bold;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+            /* text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); */
             text-align: center;
             z-index: 1;
             will-change: transform;
@@ -594,10 +594,10 @@ use Illuminate\Support\Str;
                     <h5 class="mb-2" style="font-weight: 400;font-size: 12pt">Developed & Constructed by :</h5>
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Mup2.png')}}" style="width:80%" />
+                    <img src="{{asset('assets/img/Mup3.png')}}" style="width:80%" />
                 </div>
                 <div class="col-sm-4 py-2 centering-text">
-                    <img src="{{asset('assets/img/Muk2.png')}}" style="width:75%" />
+                    <img src="{{asset('assets/img/Muk3.png')}}" style="width:75%" />
                 </div>
             </div>
         </div>

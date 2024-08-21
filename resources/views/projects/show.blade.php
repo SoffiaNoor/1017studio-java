@@ -39,7 +39,8 @@
         <div class="col-sm-12">
             <div class="row no-gutters gallerys p-0 {{ count($projectImages) > 3 ? 'multiple-items' : '' }}">
                 @foreach($projectImages as $p)
-                <div class="{{ count($projectImages) < 4 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($projectImages) > 3 ? 'slick-slide' : '' }}" style="height:auto!important;">
+                <div class="{{ count($projectImages) < 4 ? 'col-sm-4' : '' }} py-4 px-2 gallery-item {{ count($projectImages) > 3 ? 'slick-slide' : '' }}"
+                    style="height:auto!important;">
                     <a href="{{env('APP_URL')}}{{$p->image}}">
                         <img src="{{env('APP_URL')}}{{$p->image}}"
                             style="height:20rem!important;width:100%;object-fit:cover" />
@@ -86,8 +87,8 @@
                     <div class="col-sm-4 py-4 position-relative">
                         <a
                             href="{{ route('project.detail', ['id_project' => $project->id, 'id_project_type' => $p->id]) }}">
-                            <div class="img-fluid"
-                                style="height:30rem!important;width:100%;object-fit:cover;background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{env('APP_URL')}}{{$p->image}}'); background-size: cover;align-content:end">
+                            <div class="img-fluid d-flex flex-column justify-content-end"
+                                style="height:30rem!important;width:100%;object-fit:cover;background: linear-gradient(to bottom, rgba(26, 26, 26, 0.5) 0%, rgba(33, 33, 33, 0.5) 100%), url('{{env('APP_URL')}}{{$p->image}}'); background-size: cover;">
                                 <div>
                                     <h4 class="mt-0 fw-bolder text-white text-center">{{$p->name}}</h4>
                                     <p class="text-white text-center mx-2">{{$p->small_description}}</p>
