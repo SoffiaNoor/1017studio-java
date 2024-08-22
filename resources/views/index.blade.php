@@ -458,7 +458,7 @@ use Illuminate\Support\Str;
                             aria-haspopup="true" aria-expanded="false">
                             Project
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end animate slideIn text-white fw-bold"
+                        <div class="dropdown-menu dropdown-menu-end animate slideIn fw-bold"
                             aria-labelledby="navbarDropdown">
                             @foreach($projects as $project)
                             <a class="dropdown-item" href="{{ route('projects.show', ['id' => $project->id]) }}">{{

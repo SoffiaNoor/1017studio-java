@@ -61,12 +61,14 @@
             background: #ffffff;
             border: none;
             border-radius: 0%;
+            color:black!important;
         }
 
         .dropdown-menu.show {
             max-height: 500px;
             opacity: 1;
             padding: 0.5rem 0;
+            color:black!important;
         }
 
         @media (min-width: 768px) and (max-width: 1024px) {
@@ -74,10 +76,12 @@
                 max-width: 100%;
                 left: 10%;
                 border-radius: 5px;
+                color:black!important;
             }
 
             .dropdown-menu .dropdown-item {
                 font-size: 1.2rem;
+                color:black!important;
             }
 
             .nav-item.dropdown {
@@ -172,7 +176,7 @@ use Illuminate\Support\Str;
                             aria-haspopup="true" aria-expanded="false">
                             Project
                         </a>
-                        <div class="dropdown-menu dropdown-menu-end animate slideIn text-white fw-bold"
+                        <div class="dropdown-menu dropdown-menu-end animate slideIn fw-bold"
                             aria-labelledby="navbarDropdown">
                             @foreach($projects as $project)
                             <a class="dropdown-item" href="{{ route('projects.show', ['id' => $project->id]) }}">{{
